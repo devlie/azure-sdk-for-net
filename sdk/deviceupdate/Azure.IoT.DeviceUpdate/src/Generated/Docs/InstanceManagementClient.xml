@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <members>
+    <member name="GetLimitsAsync(CancellationToken)">
+      <example>
+This sample shows how to call GetLimitsAsync.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+InstanceManagementClient client = new InstanceManagementClient(endpoint, "<instanceId>", credential);
+
+Response<Limits> response = await client.GetLimitsAsync();
+]]></code>
+This sample shows how to call GetLimitsAsync with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+InstanceManagementClient client = new InstanceManagementClient(endpoint, "<instanceId>", credential);
+
+Response<Limits> response = await client.GetLimitsAsync();
+]]></code></example>
+    </member>
+    <member name="GetLimits(CancellationToken)">
+      <example>
+This sample shows how to call GetLimits.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+InstanceManagementClient client = new InstanceManagementClient(endpoint, "<instanceId>", credential);
+
+Response<Limits> response = client.GetLimits();
+]]></code>
+This sample shows how to call GetLimits with all parameters.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+InstanceManagementClient client = new InstanceManagementClient(endpoint, "<instanceId>", credential);
+
+Response<Limits> response = client.GetLimits();
+]]></code></example>
+    </member>
+    <member name="GetLimitsAsync(RequestContext)">
+      <example>
+This sample shows how to call GetLimitsAsync and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+InstanceManagementClient client = new InstanceManagementClient(endpoint, "<instanceId>", credential);
+
+Response response = await client.GetLimitsAsync(null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceCount").GetProperty("usage").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceCount").GetProperty("quota").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceClassCount").GetProperty("usage").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceClassCount").GetProperty("quota").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceGroupCount").GetProperty("usage").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceGroupCount").GetProperty("quota").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("activeDeploymentCount").GetProperty("usage").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("activeDeploymentCount").GetProperty("quota").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deploymentCount").GetProperty("usage").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deploymentCount").GetProperty("quota").ToString());
+]]></code>
+This sample shows how to call GetLimitsAsync with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+InstanceManagementClient client = new InstanceManagementClient(endpoint, "<instanceId>", credential);
+
+Response response = await client.GetLimitsAsync(null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceCount").GetProperty("usage").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceCount").GetProperty("quota").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceClassCount").GetProperty("usage").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceClassCount").GetProperty("quota").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceGroupCount").GetProperty("usage").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceGroupCount").GetProperty("quota").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("activeDeploymentCount").GetProperty("usage").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("activeDeploymentCount").GetProperty("quota").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deploymentCount").GetProperty("usage").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deploymentCount").GetProperty("quota").ToString());
+]]></code></example>
+    </member>
+    <member name="GetLimits(RequestContext)">
+      <example>
+This sample shows how to call GetLimits and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+InstanceManagementClient client = new InstanceManagementClient(endpoint, "<instanceId>", credential);
+
+Response response = client.GetLimits(null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceCount").GetProperty("usage").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceCount").GetProperty("quota").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceClassCount").GetProperty("usage").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceClassCount").GetProperty("quota").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceGroupCount").GetProperty("usage").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceGroupCount").GetProperty("quota").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("activeDeploymentCount").GetProperty("usage").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("activeDeploymentCount").GetProperty("quota").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deploymentCount").GetProperty("usage").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deploymentCount").GetProperty("quota").ToString());
+]]></code>
+This sample shows how to call GetLimits with all parameters and parse the result.
+<code><![CDATA[
+Uri endpoint = new Uri("<https://my-service.azure.com>");
+TokenCredential credential = new DefaultAzureCredential();
+InstanceManagementClient client = new InstanceManagementClient(endpoint, "<instanceId>", credential);
+
+Response response = client.GetLimits(null);
+
+JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceCount").GetProperty("usage").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceCount").GetProperty("quota").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceClassCount").GetProperty("usage").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceClassCount").GetProperty("quota").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceGroupCount").GetProperty("usage").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deviceGroupCount").GetProperty("quota").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("activeDeploymentCount").GetProperty("usage").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("activeDeploymentCount").GetProperty("quota").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deploymentCount").GetProperty("usage").ToString());
+Console.WriteLine(result.GetProperty("counters").GetProperty("deploymentCount").GetProperty("quota").ToString());
+]]></code></example>
+    </member>
+  </members>
+</doc>
