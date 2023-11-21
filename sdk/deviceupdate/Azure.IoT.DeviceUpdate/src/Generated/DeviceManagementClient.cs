@@ -3213,6 +3213,116 @@ namespace Azure.IoT.DeviceUpdate
             }
         }
 
+        /// <summary> Get log collection with detailed status. </summary>
+        /// <param name="operationId"> The log collection id. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetLogCollectionDetailedStatusAsync(string,CancellationToken)']/*" />
+        public virtual async Task<Response<LogCollectionOperationDetailedStatus>> GetLogCollectionDetailedStatusAsync(string operationId, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(operationId, nameof(operationId));
+
+            RequestContext context = FromCancellationToken(cancellationToken);
+            Response response = await GetLogCollectionDetailedStatusAsync(operationId, context).ConfigureAwait(false);
+            return Response.FromValue(LogCollectionOperationDetailedStatus.FromResponse(response), response);
+        }
+
+        /// <summary> Get log collection with detailed status. </summary>
+        /// <param name="operationId"> The log collection id. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetLogCollectionDetailedStatus(string,CancellationToken)']/*" />
+        public virtual Response<LogCollectionOperationDetailedStatus> GetLogCollectionDetailedStatus(string operationId, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(operationId, nameof(operationId));
+
+            RequestContext context = FromCancellationToken(cancellationToken);
+            Response response = GetLogCollectionDetailedStatus(operationId, context);
+            return Response.FromValue(LogCollectionOperationDetailedStatus.FromResponse(response), response);
+        }
+
+        /// <summary>
+        /// [Protocol Method] Get log collection with detailed status
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
+        /// </description>
+        /// </item>
+        /// <item>
+        /// <description>
+        /// Please try the simpler <see cref="GetLogCollectionDetailedStatusAsync(string,CancellationToken)"/> convenience overload with strongly typed models first.
+        /// </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="operationId"> The log collection id. </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetLogCollectionDetailedStatusAsync(string,RequestContext)']/*" />
+        public virtual async Task<Response> GetLogCollectionDetailedStatusAsync(string operationId, RequestContext context)
+        {
+            Argument.AssertNotNullOrEmpty(operationId, nameof(operationId));
+
+            using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetLogCollectionDetailedStatus");
+            scope.Start();
+            try
+            {
+                using HttpMessage message = CreateGetLogCollectionDetailedStatusRequest(operationId, context);
+                return await _pipeline.ProcessMessageAsync(message, context).ConfigureAwait(false);
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// [Protocol Method] Get log collection with detailed status
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
+        /// </description>
+        /// </item>
+        /// <item>
+        /// <description>
+        /// Please try the simpler <see cref="GetLogCollectionDetailedStatus(string,CancellationToken)"/> convenience overload with strongly typed models first.
+        /// </description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="operationId"> The log collection id. </param>
+        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
+        /// <returns> The response returned from the service. </returns>
+        /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetLogCollectionDetailedStatus(string,RequestContext)']/*" />
+        public virtual Response GetLogCollectionDetailedStatus(string operationId, RequestContext context)
+        {
+            Argument.AssertNotNullOrEmpty(operationId, nameof(operationId));
+
+            using var scope = ClientDiagnostics.CreateScope("DeviceManagementClient.GetLogCollectionDetailedStatus");
+            scope.Start();
+            try
+            {
+                using HttpMessage message = CreateGetLogCollectionDetailedStatusRequest(operationId, context);
+                return _pipeline.ProcessMessage(message, context);
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
         /// <summary>
         /// Gets a list of all device classes (sets of devices compatible with the same
         /// updates based on the model Id and compat properties reported in the Device
@@ -4443,100 +4553,6 @@ namespace Azure.IoT.DeviceUpdate
             return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetLogCollections", "value", "nextLink", context);
         }
 
-        /// <summary> Get log collection with detailed status. </summary>
-        /// <param name="operationId"> The log collection id. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
-        /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetLogCollectionDetailedStatusAsync(string,CancellationToken)']/*" />
-        public virtual AsyncPageable<LogCollectionOperationDetailedStatus> GetLogCollectionDetailedStatusAsync(string operationId, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNullOrEmpty(operationId, nameof(operationId));
-
-            RequestContext context = cancellationToken.CanBeCanceled ? new RequestContext { CancellationToken = cancellationToken } : null;
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetLogCollectionDetailedStatusRequest(operationId, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetLogCollectionDetailedStatusNextPageRequest(nextLink, operationId, context);
-            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, LogCollectionOperationDetailedStatus.DeserializeLogCollectionOperationDetailedStatus, ClientDiagnostics, _pipeline, "DeviceManagementClient.GetLogCollectionDetailedStatus", "value", "nextLink", context);
-        }
-
-        /// <summary> Get log collection with detailed status. </summary>
-        /// <param name="operationId"> The log collection id. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
-        /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetLogCollectionDetailedStatus(string,CancellationToken)']/*" />
-        public virtual Pageable<LogCollectionOperationDetailedStatus> GetLogCollectionDetailedStatus(string operationId, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNullOrEmpty(operationId, nameof(operationId));
-
-            RequestContext context = cancellationToken.CanBeCanceled ? new RequestContext { CancellationToken = cancellationToken } : null;
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetLogCollectionDetailedStatusRequest(operationId, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetLogCollectionDetailedStatusNextPageRequest(nextLink, operationId, context);
-            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, LogCollectionOperationDetailedStatus.DeserializeLogCollectionOperationDetailedStatus, ClientDiagnostics, _pipeline, "DeviceManagementClient.GetLogCollectionDetailedStatus", "value", "nextLink", context);
-        }
-
-        /// <summary>
-        /// [Protocol Method] Get log collection with detailed status
-        /// <list type="bullet">
-        /// <item>
-        /// <description>
-        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
-        /// </description>
-        /// </item>
-        /// <item>
-        /// <description>
-        /// Please try the simpler <see cref="GetLogCollectionDetailedStatusAsync(string,CancellationToken)"/> convenience overload with strongly typed models first.
-        /// </description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="operationId"> The log collection id. </param>
-        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
-        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
-        /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
-        /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetLogCollectionDetailedStatusAsync(string,RequestContext)']/*" />
-        public virtual AsyncPageable<BinaryData> GetLogCollectionDetailedStatusAsync(string operationId, RequestContext context)
-        {
-            Argument.AssertNotNullOrEmpty(operationId, nameof(operationId));
-
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetLogCollectionDetailedStatusRequest(operationId, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetLogCollectionDetailedStatusNextPageRequest(nextLink, operationId, context);
-            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetLogCollectionDetailedStatus", "value", "nextLink", context);
-        }
-
-        /// <summary>
-        /// [Protocol Method] Get log collection with detailed status
-        /// <list type="bullet">
-        /// <item>
-        /// <description>
-        /// This <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/ProtocolMethods.md">protocol method</see> allows explicit creation of the request and processing of the response for advanced scenarios.
-        /// </description>
-        /// </item>
-        /// <item>
-        /// <description>
-        /// Please try the simpler <see cref="GetLogCollectionDetailedStatus(string,CancellationToken)"/> convenience overload with strongly typed models first.
-        /// </description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="operationId"> The log collection id. </param>
-        /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="operationId"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="operationId"/> is an empty string, and was expected to be non-empty. </exception>
-        /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
-        /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
-        /// <include file="Docs/DeviceManagementClient.xml" path="doc/members/member[@name='GetLogCollectionDetailedStatus(string,RequestContext)']/*" />
-        public virtual Pageable<BinaryData> GetLogCollectionDetailedStatus(string operationId, RequestContext context)
-        {
-            Argument.AssertNotNullOrEmpty(operationId, nameof(operationId));
-
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetLogCollectionDetailedStatusRequest(operationId, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetLogCollectionDetailedStatusNextPageRequest(nextLink, operationId, context);
-            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceManagementClient.GetLogCollectionDetailedStatus", "value", "nextLink", context);
-        }
-
         /// <summary> Get list of device health. </summary>
         /// <param name="filter">
         /// Restricts the set of devices for which device health is returned. You can
@@ -5684,22 +5700,6 @@ namespace Azure.IoT.DeviceUpdate
         }
 
         internal HttpMessage CreateGetLogCollectionsNextPageRequest(string nextLink, RequestContext context)
-        {
-            var message = _pipeline.CreateMessage(context, ResponseClassifier200);
-            var request = message.Request;
-            request.Method = RequestMethod.Get;
-            var uri = new RawRequestUriBuilder();
-            uri.AppendRaw("https://", false);
-            uri.Reset(_endpoint);
-            uri.AppendRaw("/deviceUpdate/", false);
-            uri.AppendRaw(_instanceId, true);
-            uri.AppendRawNextLink(nextLink, false);
-            request.Uri = uri;
-            request.Headers.Add("Accept", "application/json");
-            return message;
-        }
-
-        internal HttpMessage CreateGetLogCollectionDetailedStatusNextPageRequest(string nextLink, string operationId, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;

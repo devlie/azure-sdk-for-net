@@ -85,6 +85,7 @@ namespace Azure.IoT.DeviceUpdate
         }
 
         /// <summary> Initializes a new instance of UpdateOperation. </summary>
+        /// <param name="operationId"> Operation Id. </param>
         /// <param name="status"> Operation status. </param>
         /// <param name="update">
         /// The update being imported or deleted. For import, this property will only be
@@ -100,9 +101,9 @@ namespace Azure.IoT.DeviceUpdate
         /// <param name="createdDateTime"> Date and time in UTC when the operation was created. </param>
         /// <param name="etag"> Operation ETag. </param>
         /// <returns> A new <see cref="DeviceUpdate.UpdateOperation"/> instance for mocking. </returns>
-        public static UpdateOperation UpdateOperation(OperationStatus status = default, UpdateInfo update = null, string resourceLocation = null, ResponseError error = null, string traceId = null, DateTimeOffset lastActionDateTime = default, DateTimeOffset createdDateTime = default, string etag = null)
+        public static UpdateOperation UpdateOperation(string operationId = null, OperationStatus status = default, UpdateInfo update = null, string resourceLocation = null, ResponseError error = null, string traceId = null, DateTimeOffset lastActionDateTime = default, DateTimeOffset createdDateTime = default, string etag = null)
         {
-            return new UpdateOperation(status, update, resourceLocation, error, traceId, lastActionDateTime, createdDateTime, etag);
+            return new UpdateOperation(operationId, status, update, resourceLocation, error, traceId, lastActionDateTime, createdDateTime, etag);
         }
 
         /// <summary> Initializes a new instance of UpdateInfo. </summary>
@@ -172,6 +173,11 @@ namespace Azure.IoT.DeviceUpdate
         }
 
         /// <summary> Initializes a new instance of DeviceClass. </summary>
+        /// <param name="deviceClassId">
+        /// The device class identifier. This is generated from the model Id and the compat
+        /// properties reported by the device update agent in the Device Update PnP
+        /// interface in IoT Hub. It is a hex-encoded SHA1 hash.
+        /// </param>
         /// <param name="friendlyName">
         /// The device class friendly name. This can be updated by callers after the device
         /// class has been automatically created.
@@ -179,9 +185,9 @@ namespace Azure.IoT.DeviceUpdate
         /// <param name="deviceClassProperties"> The device class properties that are used to calculate the device class Id. </param>
         /// <param name="bestCompatibleUpdate"> Update that is the highest version compatible with this device class. </param>
         /// <returns> A new <see cref="DeviceUpdate.DeviceClass"/> instance for mocking. </returns>
-        public static DeviceClass DeviceClass(string friendlyName = null, DeviceClassProperties deviceClassProperties = null, UpdateInfo bestCompatibleUpdate = null)
+        public static DeviceClass DeviceClass(string deviceClassId = null, string friendlyName = null, DeviceClassProperties deviceClassProperties = null, UpdateInfo bestCompatibleUpdate = null)
         {
-            return new DeviceClass(friendlyName, deviceClassProperties, bestCompatibleUpdate);
+            return new DeviceClass(deviceClassId, friendlyName, deviceClassProperties, bestCompatibleUpdate);
         }
 
         /// <summary> Initializes a new instance of DeviceClassProperties. </summary>
@@ -226,6 +232,7 @@ namespace Azure.IoT.DeviceUpdate
         }
 
         /// <summary> Initializes a new instance of Device. </summary>
+        /// <param name="deviceId"> Device identity. </param>
         /// <param name="moduleId"> Device module identity. </param>
         /// <param name="deviceClassId"> Device class identity. </param>
         /// <param name="groupId"> Device group identity. </param>
@@ -239,9 +246,9 @@ namespace Azure.IoT.DeviceUpdate
         /// <param name="lastDeploymentId"> The deployment identifier for the last deployment to the device. </param>
         /// <param name="lastInstallResult"> Last install result. </param>
         /// <returns> A new <see cref="DeviceUpdate.Device"/> instance for mocking. </returns>
-        public static Device Device(string moduleId = null, string deviceClassId = null, string groupId = null, UpdateInfo lastAttemptedUpdate = null, DeviceDeploymentState? deploymentStatus = null, UpdateInfo installedUpdate = null, bool onLatestUpdate = default, string lastDeploymentId = null, InstallResult lastInstallResult = null)
+        public static Device Device(string deviceId = null, string moduleId = null, string deviceClassId = null, string groupId = null, UpdateInfo lastAttemptedUpdate = null, DeviceDeploymentState? deploymentStatus = null, UpdateInfo installedUpdate = null, bool onLatestUpdate = default, string lastDeploymentId = null, InstallResult lastInstallResult = null)
         {
-            return new Device(moduleId, deviceClassId, groupId, lastAttemptedUpdate, deploymentStatus, installedUpdate, onLatestUpdate, lastDeploymentId, lastInstallResult);
+            return new Device(deviceId, moduleId, deviceClassId, groupId, lastAttemptedUpdate, deploymentStatus, installedUpdate, onLatestUpdate, lastDeploymentId, lastInstallResult);
         }
 
         /// <summary> Initializes a new instance of InstallResult. </summary>
@@ -270,6 +277,7 @@ namespace Azure.IoT.DeviceUpdate
         }
 
         /// <summary> Initializes a new instance of DeviceOperation. </summary>
+        /// <param name="operationId"> Operation Id. </param>
         /// <param name="status"> Operation status. </param>
         /// <param name="error"> Operation error encountered, if any. </param>
         /// <param name="traceId"> Operation correlation identity that can used by Microsoft Support for troubleshooting. </param>
@@ -277,9 +285,9 @@ namespace Azure.IoT.DeviceUpdate
         /// <param name="createdDateTime"> Date and time in UTC when the operation was created. </param>
         /// <param name="etag"> Operation ETag. </param>
         /// <returns> A new <see cref="DeviceUpdate.DeviceOperation"/> instance for mocking. </returns>
-        public static DeviceOperation DeviceOperation(OperationStatus status = default, ResponseError error = null, string traceId = null, DateTimeOffset lastActionDateTime = default, DateTimeOffset createdDateTime = default, string etag = null)
+        public static DeviceOperation DeviceOperation(string operationId = null, OperationStatus status = default, ResponseError error = null, string traceId = null, DateTimeOffset lastActionDateTime = default, DateTimeOffset createdDateTime = default, string etag = null)
         {
-            return new DeviceOperation(status, error, traceId, lastActionDateTime, createdDateTime, etag);
+            return new DeviceOperation(operationId, status, error, traceId, lastActionDateTime, createdDateTime, etag);
         }
 
         /// <summary> Initializes a new instance of UpdateCompliance. </summary>
@@ -294,6 +302,10 @@ namespace Azure.IoT.DeviceUpdate
         }
 
         /// <summary> Initializes a new instance of Group. </summary>
+        /// <param name="groupId">
+        /// Group identity. This is created from the value of the ADUGroup tag in the Iot
+        /// Hub's device/module twin or $default for devices with no tag.
+        /// </param>
         /// <param name="groupType"> Group type. </param>
         /// <param name="createdDateTime"> Date and time when the update was created. </param>
         /// <param name="deviceCount"> The number of devices in the group. </param>
@@ -302,11 +314,11 @@ namespace Azure.IoT.DeviceUpdate
         /// <param name="subgroupsWithOnLatestUpdateCount"> The count of subgroups with devices on the latest update. </param>
         /// <param name="deployments"> The active deployment Ids for the group. </param>
         /// <returns> A new <see cref="DeviceUpdate.Group"/> instance for mocking. </returns>
-        public static Group Group(GroupType groupType = default, string createdDateTime = null, int? deviceCount = null, int? subgroupsWithNewUpdatesAvailableCount = null, int? subgroupsWithUpdatesInProgressCount = null, int? subgroupsWithOnLatestUpdateCount = null, IEnumerable<string> deployments = null)
+        public static Group Group(string groupId = null, GroupType groupType = default, string createdDateTime = null, int? deviceCount = null, int? subgroupsWithNewUpdatesAvailableCount = null, int? subgroupsWithUpdatesInProgressCount = null, int? subgroupsWithOnLatestUpdateCount = null, IEnumerable<string> deployments = null)
         {
             deployments ??= new List<string>();
 
-            return new Group(groupType, createdDateTime, deviceCount, subgroupsWithNewUpdatesAvailableCount, subgroupsWithUpdatesInProgressCount, subgroupsWithOnLatestUpdateCount, deployments?.ToList());
+            return new Group(groupId, groupType, createdDateTime, deviceCount, subgroupsWithNewUpdatesAvailableCount, subgroupsWithUpdatesInProgressCount, subgroupsWithOnLatestUpdateCount, deployments?.ToList());
         }
 
         /// <summary> Initializes a new instance of DeviceClassSubgroupUpdatableDevices. </summary>
@@ -398,14 +410,19 @@ namespace Azure.IoT.DeviceUpdate
         }
 
         /// <summary> Initializes a new instance of DeviceClassSubgroup. </summary>
+        /// <param name="deviceClassId">
+        /// Device class subgroup identity. This is generated from the model Id and the
+        /// compat properties reported by the device update agent in the Device Update PnP
+        /// interface in IoT Hub. It is a hex-encoded SHA1 hash.
+        /// </param>
         /// <param name="groupId"> Group identity. </param>
         /// <param name="createdDateTime"> Date and time when the device class subgroup was created. </param>
         /// <param name="deviceCount"> The number of devices in the device class subgroup. </param>
         /// <param name="deploymentId"> The active deployment Id for the device class subgroup. </param>
         /// <returns> A new <see cref="DeviceUpdate.DeviceClassSubgroup"/> instance for mocking. </returns>
-        public static DeviceClassSubgroup DeviceClassSubgroup(string groupId = null, string createdDateTime = null, int? deviceCount = null, string deploymentId = null)
+        public static DeviceClassSubgroup DeviceClassSubgroup(string deviceClassId = null, string groupId = null, string createdDateTime = null, int? deviceCount = null, string deploymentId = null)
         {
-            return new DeviceClassSubgroup(groupId, createdDateTime, deviceCount, deploymentId);
+            return new DeviceClassSubgroup(deviceClassId, groupId, createdDateTime, deviceCount, deploymentId);
         }
 
         /// <summary> Initializes a new instance of DeviceClassSubgroupDeployment. </summary>
@@ -437,6 +454,7 @@ namespace Azure.IoT.DeviceUpdate
         }
 
         /// <summary> Initializes a new instance of DeploymentDeviceState. </summary>
+        /// <param name="deviceId"> Device identity. </param>
         /// <param name="moduleId"> Device module identity. </param>
         /// <param name="retryCount"> The number of times this deployment has been retried on this device. </param>
         /// <param name="movedOnToNewDeployment">
@@ -445,9 +463,9 @@ namespace Azure.IoT.DeviceUpdate
         /// </param>
         /// <param name="deviceState"> Deployment device state. </param>
         /// <returns> A new <see cref="DeviceUpdate.DeploymentDeviceState"/> instance for mocking. </returns>
-        public static DeploymentDeviceState DeploymentDeviceState(string moduleId = null, int retryCount = default, bool movedOnToNewDeployment = default, DeviceDeploymentState deviceState = default)
+        public static DeploymentDeviceState DeploymentDeviceState(string deviceId = null, string moduleId = null, int retryCount = default, bool movedOnToNewDeployment = default, DeviceDeploymentState deviceState = default)
         {
-            return new DeploymentDeviceState(moduleId, retryCount, movedOnToNewDeployment, deviceState);
+            return new DeploymentDeviceState(deviceId, moduleId, retryCount, movedOnToNewDeployment, deviceState);
         }
 
         /// <summary> Initializes a new instance of LogCollection. </summary>
@@ -494,16 +512,17 @@ namespace Azure.IoT.DeviceUpdate
         }
 
         /// <summary> Initializes a new instance of DeviceHealth. </summary>
+        /// <param name="deviceId"> Device id. </param>
         /// <param name="moduleId"> Module id. </param>
         /// <param name="state"> Aggregate device health state. </param>
         /// <param name="digitalTwinModelId"> Digital twin model Id. </param>
         /// <param name="healthChecks"> Array of health checks and their results. </param>
         /// <returns> A new <see cref="DeviceUpdate.DeviceHealth"/> instance for mocking. </returns>
-        public static DeviceHealth DeviceHealth(string moduleId = null, DeviceHealthState state = default, string digitalTwinModelId = null, IEnumerable<HealthCheck> healthChecks = null)
+        public static DeviceHealth DeviceHealth(string deviceId = null, string moduleId = null, DeviceHealthState state = default, string digitalTwinModelId = null, IEnumerable<HealthCheck> healthChecks = null)
         {
             healthChecks ??= new List<HealthCheck>();
 
-            return new DeviceHealth(moduleId, state, digitalTwinModelId, healthChecks?.ToList());
+            return new DeviceHealth(deviceId, moduleId, state, digitalTwinModelId, healthChecks?.ToList());
         }
 
         /// <summary> Initializes a new instance of HealthCheck. </summary>

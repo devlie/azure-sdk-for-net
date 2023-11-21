@@ -16,19 +16,31 @@ namespace Azure.IoT.DeviceUpdate
         }
 
         /// <summary> Initializes a new instance of DeviceClass. </summary>
+        /// <param name="deviceClassId">
+        /// The device class identifier. This is generated from the model Id and the compat
+        /// properties reported by the device update agent in the Device Update PnP
+        /// interface in IoT Hub. It is a hex-encoded SHA1 hash.
+        /// </param>
         /// <param name="friendlyName">
         /// The device class friendly name. This can be updated by callers after the device
         /// class has been automatically created.
         /// </param>
         /// <param name="deviceClassProperties"> The device class properties that are used to calculate the device class Id. </param>
         /// <param name="bestCompatibleUpdate"> Update that is the highest version compatible with this device class. </param>
-        internal DeviceClass(string friendlyName, DeviceClassProperties deviceClassProperties, UpdateInfo bestCompatibleUpdate)
+        internal DeviceClass(string deviceClassId, string friendlyName, DeviceClassProperties deviceClassProperties, UpdateInfo bestCompatibleUpdate)
         {
+            DeviceClassId = deviceClassId;
             FriendlyName = friendlyName;
             DeviceClassProperties = deviceClassProperties;
             BestCompatibleUpdate = bestCompatibleUpdate;
         }
 
+        /// <summary>
+        /// The device class identifier. This is generated from the model Id and the compat
+        /// properties reported by the device update agent in the Device Update PnP
+        /// interface in IoT Hub. It is a hex-encoded SHA1 hash.
+        /// </summary>
+        public string DeviceClassId { get; }
         /// <summary>
         /// The device class friendly name. This can be updated by callers after the device
         /// class has been automatically created.

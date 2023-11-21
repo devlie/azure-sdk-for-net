@@ -20,12 +20,18 @@ namespace Azure.IoT.DeviceUpdate
             {
                 return null;
             }
+            string deviceId = default;
             Optional<string> moduleId = default;
             DeviceHealthState state = default;
             Optional<string> digitalTwinModelId = default;
             IReadOnlyList<HealthCheck> healthChecks = default;
             foreach (var property in element.EnumerateObject())
             {
+                if (property.NameEquals("deviceId"u8))
+                {
+                    deviceId = property.Value.GetString();
+                    continue;
+                }
                 if (property.NameEquals("moduleId"u8))
                 {
                     moduleId = property.Value.GetString();
@@ -52,7 +58,7 @@ namespace Azure.IoT.DeviceUpdate
                     continue;
                 }
             }
-            return new DeviceHealth(moduleId.Value, state, digitalTwinModelId.Value, healthChecks);
+            return new DeviceHealth(deviceId, moduleId.Value, state, digitalTwinModelId.Value, healthChecks);
         }
 
         /// <summary> Deserializes the model from a raw response. </summary>

@@ -29,6 +29,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = client.GetDeviceClass("<deviceClassId>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("deviceClassId").ToString());
             Console.WriteLine(result.GetProperty("deviceClassProperties").GetProperty("compatProperties").GetProperty("<key>").ToString());
         }
 
@@ -43,6 +44,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = await client.GetDeviceClassAsync("<deviceClassId>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("deviceClassId").ToString());
             Console.WriteLine(result.GetProperty("deviceClassProperties").GetProperty("compatProperties").GetProperty("<key>").ToString());
         }
 
@@ -79,6 +81,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = client.GetDeviceClass("<deviceClassId>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("deviceClassId").ToString());
             Console.WriteLine(result.GetProperty("friendlyName").ToString());
             Console.WriteLine(result.GetProperty("deviceClassProperties").GetProperty("contractModel").GetProperty("id").ToString());
             Console.WriteLine(result.GetProperty("deviceClassProperties").GetProperty("contractModel").GetProperty("name").ToString());
@@ -101,6 +104,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = await client.GetDeviceClassAsync("<deviceClassId>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("deviceClassId").ToString());
             Console.WriteLine(result.GetProperty("friendlyName").ToString());
             Console.WriteLine(result.GetProperty("deviceClassProperties").GetProperty("contractModel").GetProperty("id").ToString());
             Console.WriteLine(result.GetProperty("deviceClassProperties").GetProperty("contractModel").GetProperty("name").ToString());
@@ -146,6 +150,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = client.UpdateDeviceClass("<deviceClassId>", content);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("deviceClassId").ToString());
             Console.WriteLine(result.GetProperty("deviceClassProperties").GetProperty("compatProperties").GetProperty("<key>").ToString());
         }
 
@@ -161,6 +166,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = await client.UpdateDeviceClassAsync("<deviceClassId>", content);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("deviceClassId").ToString());
             Console.WriteLine(result.GetProperty("deviceClassProperties").GetProperty("compatProperties").GetProperty("<key>").ToString());
         }
 
@@ -179,6 +185,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = client.UpdateDeviceClass("<deviceClassId>", content);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("deviceClassId").ToString());
             Console.WriteLine(result.GetProperty("friendlyName").ToString());
             Console.WriteLine(result.GetProperty("deviceClassProperties").GetProperty("contractModel").GetProperty("id").ToString());
             Console.WriteLine(result.GetProperty("deviceClassProperties").GetProperty("contractModel").GetProperty("name").ToString());
@@ -205,6 +212,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = await client.UpdateDeviceClassAsync("<deviceClassId>", content);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("deviceClassId").ToString());
             Console.WriteLine(result.GetProperty("friendlyName").ToString());
             Console.WriteLine(result.GetProperty("deviceClassProperties").GetProperty("contractModel").GetProperty("id").ToString());
             Console.WriteLine(result.GetProperty("deviceClassProperties").GetProperty("contractModel").GetProperty("name").ToString());
@@ -279,6 +287,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = client.GetDevice("<deviceId>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("deviceId").ToString());
             Console.WriteLine(result.GetProperty("deviceClassId").ToString());
             Console.WriteLine(result.GetProperty("onLatestUpdate").ToString());
         }
@@ -294,6 +303,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = await client.GetDeviceAsync("<deviceId>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("deviceId").ToString());
             Console.WriteLine(result.GetProperty("deviceClassId").ToString());
             Console.WriteLine(result.GetProperty("onLatestUpdate").ToString());
         }
@@ -331,6 +341,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = client.GetDevice("<deviceId>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("deviceId").ToString());
             Console.WriteLine(result.GetProperty("moduleId").ToString());
             Console.WriteLine(result.GetProperty("deviceClassId").ToString());
             Console.WriteLine(result.GetProperty("groupId").ToString());
@@ -372,6 +383,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = await client.GetDeviceAsync("<deviceId>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("deviceId").ToString());
             Console.WriteLine(result.GetProperty("moduleId").ToString());
             Console.WriteLine(result.GetProperty("deviceClassId").ToString());
             Console.WriteLine(result.GetProperty("groupId").ToString());
@@ -435,6 +447,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = client.GetDeviceModule("<deviceId>", "<moduleId>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("deviceId").ToString());
             Console.WriteLine(result.GetProperty("deviceClassId").ToString());
             Console.WriteLine(result.GetProperty("onLatestUpdate").ToString());
         }
@@ -450,6 +463,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = await client.GetDeviceModuleAsync("<deviceId>", "<moduleId>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("deviceId").ToString());
             Console.WriteLine(result.GetProperty("deviceClassId").ToString());
             Console.WriteLine(result.GetProperty("onLatestUpdate").ToString());
         }
@@ -487,6 +501,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = client.GetDeviceModule("<deviceId>", "<moduleId>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("deviceId").ToString());
             Console.WriteLine(result.GetProperty("moduleId").ToString());
             Console.WriteLine(result.GetProperty("deviceClassId").ToString());
             Console.WriteLine(result.GetProperty("groupId").ToString());
@@ -528,6 +543,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = await client.GetDeviceModuleAsync("<deviceId>", "<moduleId>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("deviceId").ToString());
             Console.WriteLine(result.GetProperty("moduleId").ToString());
             Console.WriteLine(result.GetProperty("deviceClassId").ToString());
             Console.WriteLine(result.GetProperty("groupId").ToString());
@@ -703,6 +719,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = client.GetGroup("<groupId>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("groupId").ToString());
             Console.WriteLine(result.GetProperty("groupType").ToString());
             Console.WriteLine(result.GetProperty("createdDateTime").ToString());
         }
@@ -718,6 +735,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = await client.GetGroupAsync("<groupId>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("groupId").ToString());
             Console.WriteLine(result.GetProperty("groupType").ToString());
             Console.WriteLine(result.GetProperty("createdDateTime").ToString());
         }
@@ -755,6 +773,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = client.GetGroup("<groupId>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("groupId").ToString());
             Console.WriteLine(result.GetProperty("groupType").ToString());
             Console.WriteLine(result.GetProperty("createdDateTime").ToString());
             Console.WriteLine(result.GetProperty("deviceCount").ToString());
@@ -775,6 +794,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = await client.GetGroupAsync("<groupId>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("groupId").ToString());
             Console.WriteLine(result.GetProperty("groupType").ToString());
             Console.WriteLine(result.GetProperty("createdDateTime").ToString());
             Console.WriteLine(result.GetProperty("deviceCount").ToString());
@@ -1521,6 +1541,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = client.GetDeviceClassSubgroup("<groupId>", "<deviceClassId>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("deviceClassId").ToString());
             Console.WriteLine(result.GetProperty("groupId").ToString());
             Console.WriteLine(result.GetProperty("createdDateTime").ToString());
         }
@@ -1536,6 +1557,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = await client.GetDeviceClassSubgroupAsync("<groupId>", "<deviceClassId>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("deviceClassId").ToString());
             Console.WriteLine(result.GetProperty("groupId").ToString());
             Console.WriteLine(result.GetProperty("createdDateTime").ToString());
         }
@@ -1573,6 +1595,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = client.GetDeviceClassSubgroup("<groupId>", "<deviceClassId>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("deviceClassId").ToString());
             Console.WriteLine(result.GetProperty("groupId").ToString());
             Console.WriteLine(result.GetProperty("createdDateTime").ToString());
             Console.WriteLine(result.GetProperty("deviceCount").ToString());
@@ -1590,6 +1613,7 @@ namespace Azure.IoT.DeviceUpdate.Samples
             Response response = await client.GetDeviceClassSubgroupAsync("<groupId>", "<deviceClassId>", null);
 
             JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("deviceClassId").ToString());
             Console.WriteLine(result.GetProperty("groupId").ToString());
             Console.WriteLine(result.GetProperty("createdDateTime").ToString());
             Console.WriteLine(result.GetProperty("deviceCount").ToString());
@@ -2828,6 +2852,126 @@ ModuleId = "<moduleId>",
 
         [Test]
         [Ignore("Only validating compilation of examples")]
+        public void Example_GetLogCollectionDetailedStatus_ShortVersion()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeviceManagementClient client = new DeviceManagementClient(endpoint, "<instanceId>", credential);
+
+            Response response = client.GetLogCollectionDetailedStatus("<operationId>", null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_GetLogCollectionDetailedStatus_ShortVersion_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeviceManagementClient client = new DeviceManagementClient(endpoint, "<instanceId>", credential);
+
+            Response response = await client.GetLogCollectionDetailedStatusAsync("<operationId>", null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_GetLogCollectionDetailedStatus_ShortVersion_Convenience()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeviceManagementClient client = new DeviceManagementClient(endpoint, "<instanceId>", credential);
+
+            Response<LogCollectionOperationDetailedStatus> response = client.GetLogCollectionDetailedStatus("<operationId>");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_GetLogCollectionDetailedStatus_ShortVersion_Convenience_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeviceManagementClient client = new DeviceManagementClient(endpoint, "<instanceId>", credential);
+
+            Response<LogCollectionOperationDetailedStatus> response = await client.GetLogCollectionDetailedStatusAsync("<operationId>");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_GetLogCollectionDetailedStatus_AllParameters()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeviceManagementClient client = new DeviceManagementClient(endpoint, "<instanceId>", credential);
+
+            Response response = client.GetLogCollectionDetailedStatus("<operationId>", null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("operationId").ToString());
+            Console.WriteLine(result.GetProperty("createdDateTime").ToString());
+            Console.WriteLine(result.GetProperty("lastActionDateTime").ToString());
+            Console.WriteLine(result.GetProperty("status").ToString());
+            Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("deviceId").ToString());
+            Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("moduleId").ToString());
+            Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("status").ToString());
+            Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("resultCode").ToString());
+            Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("extendedResultCode").ToString());
+            Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("logLocation").ToString());
+            Console.WriteLine(result.GetProperty("description").ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_GetLogCollectionDetailedStatus_AllParameters_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeviceManagementClient client = new DeviceManagementClient(endpoint, "<instanceId>", credential);
+
+            Response response = await client.GetLogCollectionDetailedStatusAsync("<operationId>", null);
+
+            JsonElement result = JsonDocument.Parse(response.ContentStream).RootElement;
+            Console.WriteLine(result.GetProperty("operationId").ToString());
+            Console.WriteLine(result.GetProperty("createdDateTime").ToString());
+            Console.WriteLine(result.GetProperty("lastActionDateTime").ToString());
+            Console.WriteLine(result.GetProperty("status").ToString());
+            Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("deviceId").ToString());
+            Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("moduleId").ToString());
+            Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("status").ToString());
+            Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("resultCode").ToString());
+            Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("extendedResultCode").ToString());
+            Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("logLocation").ToString());
+            Console.WriteLine(result.GetProperty("description").ToString());
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public void Example_GetLogCollectionDetailedStatus_AllParameters_Convenience()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeviceManagementClient client = new DeviceManagementClient(endpoint, "<instanceId>", credential);
+
+            Response<LogCollectionOperationDetailedStatus> response = client.GetLogCollectionDetailedStatus("<operationId>");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task Example_GetLogCollectionDetailedStatus_AllParameters_Convenience_Async()
+        {
+            Uri endpoint = new Uri("<https://my-service.azure.com>");
+            TokenCredential credential = new DefaultAzureCredential();
+            DeviceManagementClient client = new DeviceManagementClient(endpoint, "<instanceId>", credential);
+
+            Response<LogCollectionOperationDetailedStatus> response = await client.GetLogCollectionDetailedStatusAsync("<operationId>");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
         public void Example_GetDeviceClasses_ShortVersion()
         {
             Uri endpoint = new Uri("<https://my-service.azure.com>");
@@ -2837,6 +2981,7 @@ ModuleId = "<moduleId>",
             foreach (BinaryData item in client.GetDeviceClasses(null, null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("deviceClassId").ToString());
                 Console.WriteLine(result.GetProperty("deviceClassProperties").GetProperty("compatProperties").GetProperty("<key>").ToString());
             }
         }
@@ -2852,6 +2997,7 @@ ModuleId = "<moduleId>",
             await foreach (BinaryData item in client.GetDeviceClassesAsync(null, null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("deviceClassId").ToString());
                 Console.WriteLine(result.GetProperty("deviceClassProperties").GetProperty("compatProperties").GetProperty("<key>").ToString());
             }
         }
@@ -2893,6 +3039,7 @@ ModuleId = "<moduleId>",
             foreach (BinaryData item in client.GetDeviceClasses("<filter>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("deviceClassId").ToString());
                 Console.WriteLine(result.GetProperty("friendlyName").ToString());
                 Console.WriteLine(result.GetProperty("deviceClassProperties").GetProperty("contractModel").GetProperty("id").ToString());
                 Console.WriteLine(result.GetProperty("deviceClassProperties").GetProperty("contractModel").GetProperty("name").ToString());
@@ -2916,6 +3063,7 @@ ModuleId = "<moduleId>",
             await foreach (BinaryData item in client.GetDeviceClassesAsync("<filter>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("deviceClassId").ToString());
                 Console.WriteLine(result.GetProperty("friendlyName").ToString());
                 Console.WriteLine(result.GetProperty("deviceClassProperties").GetProperty("contractModel").GetProperty("id").ToString());
                 Console.WriteLine(result.GetProperty("deviceClassProperties").GetProperty("contractModel").GetProperty("name").ToString());
@@ -3089,6 +3237,7 @@ ModuleId = "<moduleId>",
             foreach (BinaryData item in client.GetDevices(null, null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("deviceId").ToString());
                 Console.WriteLine(result.GetProperty("deviceClassId").ToString());
                 Console.WriteLine(result.GetProperty("onLatestUpdate").ToString());
             }
@@ -3105,6 +3254,7 @@ ModuleId = "<moduleId>",
             await foreach (BinaryData item in client.GetDevicesAsync(null, null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("deviceId").ToString());
                 Console.WriteLine(result.GetProperty("deviceClassId").ToString());
                 Console.WriteLine(result.GetProperty("onLatestUpdate").ToString());
             }
@@ -3147,6 +3297,7 @@ ModuleId = "<moduleId>",
             foreach (BinaryData item in client.GetDevices("<filter>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("deviceId").ToString());
                 Console.WriteLine(result.GetProperty("moduleId").ToString());
                 Console.WriteLine(result.GetProperty("deviceClassId").ToString());
                 Console.WriteLine(result.GetProperty("groupId").ToString());
@@ -3189,6 +3340,7 @@ ModuleId = "<moduleId>",
             await foreach (BinaryData item in client.GetDevicesAsync("<filter>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("deviceId").ToString());
                 Console.WriteLine(result.GetProperty("moduleId").ToString());
                 Console.WriteLine(result.GetProperty("deviceClassId").ToString());
                 Console.WriteLine(result.GetProperty("groupId").ToString());
@@ -3257,6 +3409,7 @@ ModuleId = "<moduleId>",
             foreach (BinaryData item in client.GetGroups(null, null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("groupId").ToString());
                 Console.WriteLine(result.GetProperty("groupType").ToString());
                 Console.WriteLine(result.GetProperty("createdDateTime").ToString());
             }
@@ -3273,6 +3426,7 @@ ModuleId = "<moduleId>",
             await foreach (BinaryData item in client.GetGroupsAsync(null, null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("groupId").ToString());
                 Console.WriteLine(result.GetProperty("groupType").ToString());
                 Console.WriteLine(result.GetProperty("createdDateTime").ToString());
             }
@@ -3315,6 +3469,7 @@ ModuleId = "<moduleId>",
             foreach (BinaryData item in client.GetGroups("<orderby>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("groupId").ToString());
                 Console.WriteLine(result.GetProperty("groupType").ToString());
                 Console.WriteLine(result.GetProperty("createdDateTime").ToString());
                 Console.WriteLine(result.GetProperty("deviceCount").ToString());
@@ -3336,6 +3491,7 @@ ModuleId = "<moduleId>",
             await foreach (BinaryData item in client.GetGroupsAsync("<orderby>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("groupId").ToString());
                 Console.WriteLine(result.GetProperty("groupType").ToString());
                 Console.WriteLine(result.GetProperty("createdDateTime").ToString());
                 Console.WriteLine(result.GetProperty("deviceCount").ToString());
@@ -3677,6 +3833,7 @@ ModuleId = "<moduleId>",
             foreach (BinaryData item in client.GetDeviceClassSubgroupsForGroups("<groupId>", null, null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("deviceClassId").ToString());
                 Console.WriteLine(result.GetProperty("groupId").ToString());
                 Console.WriteLine(result.GetProperty("createdDateTime").ToString());
             }
@@ -3693,6 +3850,7 @@ ModuleId = "<moduleId>",
             await foreach (BinaryData item in client.GetDeviceClassSubgroupsForGroupsAsync("<groupId>", null, null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("deviceClassId").ToString());
                 Console.WriteLine(result.GetProperty("groupId").ToString());
                 Console.WriteLine(result.GetProperty("createdDateTime").ToString());
             }
@@ -3735,6 +3893,7 @@ ModuleId = "<moduleId>",
             foreach (BinaryData item in client.GetDeviceClassSubgroupsForGroups("<groupId>", "<filter>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("deviceClassId").ToString());
                 Console.WriteLine(result.GetProperty("groupId").ToString());
                 Console.WriteLine(result.GetProperty("createdDateTime").ToString());
                 Console.WriteLine(result.GetProperty("deviceCount").ToString());
@@ -3753,6 +3912,7 @@ ModuleId = "<moduleId>",
             await foreach (BinaryData item in client.GetDeviceClassSubgroupsForGroupsAsync("<groupId>", "<filter>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("deviceClassId").ToString());
                 Console.WriteLine(result.GetProperty("groupId").ToString());
                 Console.WriteLine(result.GetProperty("createdDateTime").ToString());
                 Console.WriteLine(result.GetProperty("deviceCount").ToString());
@@ -3955,6 +4115,7 @@ ModuleId = "<moduleId>",
             foreach (BinaryData item in client.GetDeviceStatesForDeviceClassSubgroupDeployments("<groupId>", "<deviceClassId>", "<deploymentId>", null, null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("deviceId").ToString());
                 Console.WriteLine(result.GetProperty("retryCount").ToString());
                 Console.WriteLine(result.GetProperty("movedOnToNewDeployment").ToString());
                 Console.WriteLine(result.GetProperty("deviceState").ToString());
@@ -3972,6 +4133,7 @@ ModuleId = "<moduleId>",
             await foreach (BinaryData item in client.GetDeviceStatesForDeviceClassSubgroupDeploymentsAsync("<groupId>", "<deviceClassId>", "<deploymentId>", null, null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("deviceId").ToString());
                 Console.WriteLine(result.GetProperty("retryCount").ToString());
                 Console.WriteLine(result.GetProperty("movedOnToNewDeployment").ToString());
                 Console.WriteLine(result.GetProperty("deviceState").ToString());
@@ -4015,6 +4177,7 @@ ModuleId = "<moduleId>",
             foreach (BinaryData item in client.GetDeviceStatesForDeviceClassSubgroupDeployments("<groupId>", "<deviceClassId>", "<deploymentId>", "<filter>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("deviceId").ToString());
                 Console.WriteLine(result.GetProperty("moduleId").ToString());
                 Console.WriteLine(result.GetProperty("retryCount").ToString());
                 Console.WriteLine(result.GetProperty("movedOnToNewDeployment").ToString());
@@ -4033,6 +4196,7 @@ ModuleId = "<moduleId>",
             await foreach (BinaryData item in client.GetDeviceStatesForDeviceClassSubgroupDeploymentsAsync("<groupId>", "<deviceClassId>", "<deploymentId>", "<filter>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("deviceId").ToString());
                 Console.WriteLine(result.GetProperty("moduleId").ToString());
                 Console.WriteLine(result.GetProperty("retryCount").ToString());
                 Console.WriteLine(result.GetProperty("movedOnToNewDeployment").ToString());
@@ -4077,6 +4241,7 @@ ModuleId = "<moduleId>",
             foreach (BinaryData item in client.GetOperationStatuses(null, null, null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("operationId").ToString());
                 Console.WriteLine(result.GetProperty("status").ToString());
                 Console.WriteLine(result.GetProperty("lastActionDateTime").ToString());
                 Console.WriteLine(result.GetProperty("createdDateTime").ToString());
@@ -4094,6 +4259,7 @@ ModuleId = "<moduleId>",
             await foreach (BinaryData item in client.GetOperationStatusesAsync(null, null, null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("operationId").ToString());
                 Console.WriteLine(result.GetProperty("status").ToString());
                 Console.WriteLine(result.GetProperty("lastActionDateTime").ToString());
                 Console.WriteLine(result.GetProperty("createdDateTime").ToString());
@@ -4137,6 +4303,7 @@ ModuleId = "<moduleId>",
             foreach (BinaryData item in client.GetOperationStatuses("<filter>", 1234, null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("operationId").ToString());
                 Console.WriteLine(result.GetProperty("status").ToString());
                 Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
                 Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
@@ -4160,6 +4327,7 @@ ModuleId = "<moduleId>",
             await foreach (BinaryData item in client.GetOperationStatusesAsync("<filter>", 1234, null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("operationId").ToString());
                 Console.WriteLine(result.GetProperty("status").ToString());
                 Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
                 Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
@@ -4326,138 +4494,6 @@ ModuleId = "<moduleId>",
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public void Example_GetLogCollectionDetailedStatus_ShortVersion()
-        {
-            Uri endpoint = new Uri("<https://my-service.azure.com>");
-            TokenCredential credential = new DefaultAzureCredential();
-            DeviceManagementClient client = new DeviceManagementClient(endpoint, "<instanceId>", credential);
-
-            foreach (BinaryData item in client.GetLogCollectionDetailedStatus("<operationId>", null))
-            {
-                JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-                Console.WriteLine(result.ToString());
-            }
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
-        public async Task Example_GetLogCollectionDetailedStatus_ShortVersion_Async()
-        {
-            Uri endpoint = new Uri("<https://my-service.azure.com>");
-            TokenCredential credential = new DefaultAzureCredential();
-            DeviceManagementClient client = new DeviceManagementClient(endpoint, "<instanceId>", credential);
-
-            await foreach (BinaryData item in client.GetLogCollectionDetailedStatusAsync("<operationId>", null))
-            {
-                JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-                Console.WriteLine(result.ToString());
-            }
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
-        public void Example_GetLogCollectionDetailedStatus_ShortVersion_Convenience()
-        {
-            Uri endpoint = new Uri("<https://my-service.azure.com>");
-            TokenCredential credential = new DefaultAzureCredential();
-            DeviceManagementClient client = new DeviceManagementClient(endpoint, "<instanceId>", credential);
-
-            foreach (LogCollectionOperationDetailedStatus item in client.GetLogCollectionDetailedStatus("<operationId>"))
-            {
-            }
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
-        public async Task Example_GetLogCollectionDetailedStatus_ShortVersion_Convenience_Async()
-        {
-            Uri endpoint = new Uri("<https://my-service.azure.com>");
-            TokenCredential credential = new DefaultAzureCredential();
-            DeviceManagementClient client = new DeviceManagementClient(endpoint, "<instanceId>", credential);
-
-            await foreach (LogCollectionOperationDetailedStatus item in client.GetLogCollectionDetailedStatusAsync("<operationId>"))
-            {
-            }
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
-        public void Example_GetLogCollectionDetailedStatus_AllParameters()
-        {
-            Uri endpoint = new Uri("<https://my-service.azure.com>");
-            TokenCredential credential = new DefaultAzureCredential();
-            DeviceManagementClient client = new DeviceManagementClient(endpoint, "<instanceId>", credential);
-
-            foreach (BinaryData item in client.GetLogCollectionDetailedStatus("<operationId>", null))
-            {
-                JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-                Console.WriteLine(result.GetProperty("operationId").ToString());
-                Console.WriteLine(result.GetProperty("createdDateTime").ToString());
-                Console.WriteLine(result.GetProperty("lastActionDateTime").ToString());
-                Console.WriteLine(result.GetProperty("status").ToString());
-                Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("deviceId").ToString());
-                Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("moduleId").ToString());
-                Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("status").ToString());
-                Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("resultCode").ToString());
-                Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("extendedResultCode").ToString());
-                Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("logLocation").ToString());
-                Console.WriteLine(result.GetProperty("description").ToString());
-            }
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
-        public async Task Example_GetLogCollectionDetailedStatus_AllParameters_Async()
-        {
-            Uri endpoint = new Uri("<https://my-service.azure.com>");
-            TokenCredential credential = new DefaultAzureCredential();
-            DeviceManagementClient client = new DeviceManagementClient(endpoint, "<instanceId>", credential);
-
-            await foreach (BinaryData item in client.GetLogCollectionDetailedStatusAsync("<operationId>", null))
-            {
-                JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
-                Console.WriteLine(result.GetProperty("operationId").ToString());
-                Console.WriteLine(result.GetProperty("createdDateTime").ToString());
-                Console.WriteLine(result.GetProperty("lastActionDateTime").ToString());
-                Console.WriteLine(result.GetProperty("status").ToString());
-                Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("deviceId").ToString());
-                Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("moduleId").ToString());
-                Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("status").ToString());
-                Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("resultCode").ToString());
-                Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("extendedResultCode").ToString());
-                Console.WriteLine(result.GetProperty("deviceStatus")[0].GetProperty("logLocation").ToString());
-                Console.WriteLine(result.GetProperty("description").ToString());
-            }
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
-        public void Example_GetLogCollectionDetailedStatus_AllParameters_Convenience()
-        {
-            Uri endpoint = new Uri("<https://my-service.azure.com>");
-            TokenCredential credential = new DefaultAzureCredential();
-            DeviceManagementClient client = new DeviceManagementClient(endpoint, "<instanceId>", credential);
-
-            foreach (LogCollectionOperationDetailedStatus item in client.GetLogCollectionDetailedStatus("<operationId>"))
-            {
-            }
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
-        public async Task Example_GetLogCollectionDetailedStatus_AllParameters_Convenience_Async()
-        {
-            Uri endpoint = new Uri("<https://my-service.azure.com>");
-            TokenCredential credential = new DefaultAzureCredential();
-            DeviceManagementClient client = new DeviceManagementClient(endpoint, "<instanceId>", credential);
-
-            await foreach (LogCollectionOperationDetailedStatus item in client.GetLogCollectionDetailedStatusAsync("<operationId>"))
-            {
-            }
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
         public void Example_GetHealthOfDevices_ShortVersion()
         {
             Uri endpoint = new Uri("<https://my-service.azure.com>");
@@ -4467,6 +4503,7 @@ ModuleId = "<moduleId>",
             foreach (BinaryData item in client.GetHealthOfDevices(null, null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("deviceId").ToString());
                 Console.WriteLine(result.GetProperty("state").ToString());
                 Console.WriteLine(result.GetProperty("healthChecks")[0].ToString());
             }
@@ -4483,6 +4520,7 @@ ModuleId = "<moduleId>",
             await foreach (BinaryData item in client.GetHealthOfDevicesAsync(null, null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("deviceId").ToString());
                 Console.WriteLine(result.GetProperty("state").ToString());
                 Console.WriteLine(result.GetProperty("healthChecks")[0].ToString());
             }
@@ -4525,6 +4563,7 @@ ModuleId = "<moduleId>",
             foreach (BinaryData item in client.GetHealthOfDevices("<filter>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("deviceId").ToString());
                 Console.WriteLine(result.GetProperty("moduleId").ToString());
                 Console.WriteLine(result.GetProperty("state").ToString());
                 Console.WriteLine(result.GetProperty("digitalTwinModelId").ToString());
@@ -4544,6 +4583,7 @@ ModuleId = "<moduleId>",
             await foreach (BinaryData item in client.GetHealthOfDevicesAsync("<filter>", null))
             {
                 JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+                Console.WriteLine(result.GetProperty("deviceId").ToString());
                 Console.WriteLine(result.GetProperty("moduleId").ToString());
                 Console.WriteLine(result.GetProperty("state").ToString());
                 Console.WriteLine(result.GetProperty("digitalTwinModelId").ToString());
@@ -4591,6 +4631,7 @@ ModuleId = "<moduleId>",
             BinaryData responseData = operation.Value;
 
             JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
+            Console.WriteLine(result.GetProperty("operationId").ToString());
             Console.WriteLine(result.GetProperty("status").ToString());
             Console.WriteLine(result.GetProperty("lastActionDateTime").ToString());
             Console.WriteLine(result.GetProperty("createdDateTime").ToString());
@@ -4609,6 +4650,7 @@ ModuleId = "<moduleId>",
             BinaryData responseData = operation.Value;
 
             JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
+            Console.WriteLine(result.GetProperty("operationId").ToString());
             Console.WriteLine(result.GetProperty("status").ToString());
             Console.WriteLine(result.GetProperty("lastActionDateTime").ToString());
             Console.WriteLine(result.GetProperty("createdDateTime").ToString());
@@ -4651,6 +4693,7 @@ ModuleId = "<moduleId>",
             BinaryData responseData = operation.Value;
 
             JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
+            Console.WriteLine(result.GetProperty("operationId").ToString());
             Console.WriteLine(result.GetProperty("status").ToString());
             Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
             Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());
@@ -4675,6 +4718,7 @@ ModuleId = "<moduleId>",
             BinaryData responseData = operation.Value;
 
             JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
+            Console.WriteLine(result.GetProperty("operationId").ToString());
             Console.WriteLine(result.GetProperty("status").ToString());
             Console.WriteLine(result.GetProperty("error").GetProperty("code").ToString());
             Console.WriteLine(result.GetProperty("error").GetProperty("message").ToString());

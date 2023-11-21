@@ -19,6 +19,7 @@ namespace Azure.IoT.DeviceUpdate
             {
                 return null;
             }
+            string deviceId = default;
             Optional<string> moduleId = default;
             string deviceClassId = default;
             Optional<string> groupId = default;
@@ -30,6 +31,11 @@ namespace Azure.IoT.DeviceUpdate
             Optional<InstallResult> lastInstallResult = default;
             foreach (var property in element.EnumerateObject())
             {
+                if (property.NameEquals("deviceId"u8))
+                {
+                    deviceId = property.Value.GetString();
+                    continue;
+                }
                 if (property.NameEquals("moduleId"u8))
                 {
                     moduleId = property.Value.GetString();
@@ -92,7 +98,7 @@ namespace Azure.IoT.DeviceUpdate
                     continue;
                 }
             }
-            return new Device(moduleId.Value, deviceClassId, groupId.Value, lastAttemptedUpdate.Value, Optional.ToNullable(deploymentStatus), installedUpdate.Value, onLatestUpdate, lastDeploymentId.Value, lastInstallResult.Value);
+            return new Device(deviceId, moduleId.Value, deviceClassId, groupId.Value, lastAttemptedUpdate.Value, Optional.ToNullable(deploymentStatus), installedUpdate.Value, onLatestUpdate, lastDeploymentId.Value, lastInstallResult.Value);
         }
 
         /// <summary> Deserializes the model from a raw response. </summary>

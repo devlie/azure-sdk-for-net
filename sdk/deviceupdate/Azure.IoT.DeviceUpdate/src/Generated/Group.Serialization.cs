@@ -20,6 +20,7 @@ namespace Azure.IoT.DeviceUpdate
             {
                 return null;
             }
+            string groupId = default;
             GroupType groupType = default;
             string createdDateTime = default;
             Optional<int> deviceCount = default;
@@ -29,6 +30,11 @@ namespace Azure.IoT.DeviceUpdate
             Optional<IReadOnlyList<string>> deployments = default;
             foreach (var property in element.EnumerateObject())
             {
+                if (property.NameEquals("groupId"u8))
+                {
+                    groupId = property.Value.GetString();
+                    continue;
+                }
                 if (property.NameEquals("groupType"u8))
                 {
                     groupType = new GroupType(property.Value.GetString());
@@ -90,7 +96,7 @@ namespace Azure.IoT.DeviceUpdate
                     continue;
                 }
             }
-            return new Group(groupType, createdDateTime, Optional.ToNullable(deviceCount), Optional.ToNullable(subgroupsWithNewUpdatesAvailableCount), Optional.ToNullable(subgroupsWithUpdatesInProgressCount), Optional.ToNullable(subgroupsWithOnLatestUpdateCount), Optional.ToList(deployments));
+            return new Group(groupId, groupType, createdDateTime, Optional.ToNullable(deviceCount), Optional.ToNullable(subgroupsWithNewUpdatesAvailableCount), Optional.ToNullable(subgroupsWithUpdatesInProgressCount), Optional.ToNullable(subgroupsWithOnLatestUpdateCount), Optional.ToList(deployments));
         }
 
         /// <summary> Deserializes the model from a raw response. </summary>

@@ -20,6 +20,7 @@ namespace Azure.IoT.DeviceUpdate
             {
                 return null;
             }
+            string operationId = default;
             OperationStatus status = default;
             Optional<UpdateInfo> update = default;
             Optional<string> resourceLocation = default;
@@ -30,6 +31,11 @@ namespace Azure.IoT.DeviceUpdate
             Optional<string> etag = default;
             foreach (var property in element.EnumerateObject())
             {
+                if (property.NameEquals("operationId"u8))
+                {
+                    operationId = property.Value.GetString();
+                    continue;
+                }
                 if (property.NameEquals("status"u8))
                 {
                     status = new OperationStatus(property.Value.GetString());
@@ -79,7 +85,7 @@ namespace Azure.IoT.DeviceUpdate
                     continue;
                 }
             }
-            return new UpdateOperation(status, update.Value, resourceLocation.Value, error.Value, traceId.Value, lastActionDateTime, createdDateTime, etag.Value);
+            return new UpdateOperation(operationId, status, update.Value, resourceLocation.Value, error.Value, traceId.Value, lastActionDateTime, createdDateTime, etag.Value);
         }
 
         /// <summary> Deserializes the model from a raw response. </summary>

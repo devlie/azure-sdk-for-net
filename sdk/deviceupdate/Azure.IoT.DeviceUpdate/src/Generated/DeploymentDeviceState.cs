@@ -25,6 +25,7 @@ namespace Azure.IoT.DeviceUpdate
         }
 
         /// <summary> Initializes a new instance of DeploymentDeviceState. </summary>
+        /// <param name="deviceId"> Device identity. </param>
         /// <param name="moduleId"> Device module identity. </param>
         /// <param name="retryCount"> The number of times this deployment has been retried on this device. </param>
         /// <param name="movedOnToNewDeployment">
@@ -32,14 +33,17 @@ namespace Azure.IoT.DeviceUpdate
         /// longer retry this deployment.
         /// </param>
         /// <param name="deviceState"> Deployment device state. </param>
-        internal DeploymentDeviceState(string moduleId, int retryCount, bool movedOnToNewDeployment, DeviceDeploymentState deviceState)
+        internal DeploymentDeviceState(string deviceId, string moduleId, int retryCount, bool movedOnToNewDeployment, DeviceDeploymentState deviceState)
         {
+            DeviceId = deviceId;
             ModuleId = moduleId;
             RetryCount = retryCount;
             MovedOnToNewDeployment = movedOnToNewDeployment;
             DeviceState = deviceState;
         }
 
+        /// <summary> Device identity. </summary>
+        public string DeviceId { get; }
         /// <summary> Device module identity. </summary>
         public string ModuleId { get; }
         /// <summary> The number of times this deployment has been retried on this device. </summary>

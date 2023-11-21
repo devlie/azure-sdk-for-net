@@ -28,18 +28,22 @@ namespace Azure.IoT.DeviceUpdate
         }
 
         /// <summary> Initializes a new instance of DeviceHealth. </summary>
+        /// <param name="deviceId"> Device id. </param>
         /// <param name="moduleId"> Module id. </param>
         /// <param name="state"> Aggregate device health state. </param>
         /// <param name="digitalTwinModelId"> Digital twin model Id. </param>
         /// <param name="healthChecks"> Array of health checks and their results. </param>
-        internal DeviceHealth(string moduleId, DeviceHealthState state, string digitalTwinModelId, IReadOnlyList<HealthCheck> healthChecks)
+        internal DeviceHealth(string deviceId, string moduleId, DeviceHealthState state, string digitalTwinModelId, IReadOnlyList<HealthCheck> healthChecks)
         {
+            DeviceId = deviceId;
             ModuleId = moduleId;
             State = state;
             DigitalTwinModelId = digitalTwinModelId;
             HealthChecks = healthChecks;
         }
 
+        /// <summary> Device id. </summary>
+        public string DeviceId { get; }
         /// <summary> Module id. </summary>
         public string ModuleId { get; }
         /// <summary> Aggregate device health state. </summary>

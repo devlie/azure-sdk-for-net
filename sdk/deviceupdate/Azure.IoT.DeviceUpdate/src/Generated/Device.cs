@@ -29,6 +29,7 @@ namespace Azure.IoT.DeviceUpdate
         }
 
         /// <summary> Initializes a new instance of Device. </summary>
+        /// <param name="deviceId"> Device identity. </param>
         /// <param name="moduleId"> Device module identity. </param>
         /// <param name="deviceClassId"> Device class identity. </param>
         /// <param name="groupId"> Device group identity. </param>
@@ -41,8 +42,9 @@ namespace Azure.IoT.DeviceUpdate
         /// </param>
         /// <param name="lastDeploymentId"> The deployment identifier for the last deployment to the device. </param>
         /// <param name="lastInstallResult"> Last install result. </param>
-        internal Device(string moduleId, string deviceClassId, string groupId, UpdateInfo lastAttemptedUpdate, DeviceDeploymentState? deploymentStatus, UpdateInfo installedUpdate, bool onLatestUpdate, string lastDeploymentId, InstallResult lastInstallResult)
+        internal Device(string deviceId, string moduleId, string deviceClassId, string groupId, UpdateInfo lastAttemptedUpdate, DeviceDeploymentState? deploymentStatus, UpdateInfo installedUpdate, bool onLatestUpdate, string lastDeploymentId, InstallResult lastInstallResult)
         {
+            DeviceId = deviceId;
             ModuleId = moduleId;
             DeviceClassId = deviceClassId;
             GroupId = groupId;
@@ -54,6 +56,8 @@ namespace Azure.IoT.DeviceUpdate
             LastInstallResult = lastInstallResult;
         }
 
+        /// <summary> Device identity. </summary>
+        public string DeviceId { get; }
         /// <summary> Device module identity. </summary>
         public string ModuleId { get; }
         /// <summary> Device class identity. </summary>

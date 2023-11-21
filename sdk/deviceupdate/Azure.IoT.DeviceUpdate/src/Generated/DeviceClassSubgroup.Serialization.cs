@@ -19,12 +19,18 @@ namespace Azure.IoT.DeviceUpdate
             {
                 return null;
             }
+            string deviceClassId = default;
             string groupId = default;
             string createdDateTime = default;
             Optional<int> deviceCount = default;
             Optional<string> deploymentId = default;
             foreach (var property in element.EnumerateObject())
             {
+                if (property.NameEquals("deviceClassId"u8))
+                {
+                    deviceClassId = property.Value.GetString();
+                    continue;
+                }
                 if (property.NameEquals("groupId"u8))
                 {
                     groupId = property.Value.GetString();
@@ -50,7 +56,7 @@ namespace Azure.IoT.DeviceUpdate
                     continue;
                 }
             }
-            return new DeviceClassSubgroup(groupId, createdDateTime, Optional.ToNullable(deviceCount), deploymentId.Value);
+            return new DeviceClassSubgroup(deviceClassId, groupId, createdDateTime, Optional.ToNullable(deviceCount), deploymentId.Value);
         }
 
         /// <summary> Deserializes the model from a raw response. </summary>

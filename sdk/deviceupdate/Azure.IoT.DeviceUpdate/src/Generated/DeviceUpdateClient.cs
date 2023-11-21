@@ -615,36 +615,38 @@ namespace Azure.IoT.DeviceUpdate
         /// <summary> Get a list of all update versions that match the specified provider and name. </summary>
         /// <param name="provider"> Update provider. </param>
         /// <param name="name"> Update name. </param>
+        /// <param name="filter"> Optional to filter updates by isDeployable property. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="provider"/> or <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="provider"/> or <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
-        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='GetVersionsAsync(string,string,CancellationToken)']/*" />
-        public virtual AsyncPageable<string> GetVersionsAsync(string provider, string name, CancellationToken cancellationToken = default)
+        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='GetVersionsAsync(string,string,string,CancellationToken)']/*" />
+        public virtual AsyncPageable<string> GetVersionsAsync(string provider, string name, string filter = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(provider, nameof(provider));
             Argument.AssertNotNullOrEmpty(name, nameof(name));
 
             RequestContext context = cancellationToken.CanBeCanceled ? new RequestContext { CancellationToken = cancellationToken } : null;
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetVersionsRequest(provider, name, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetVersionsNextPageRequest(nextLink, provider, name, context);
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetVersionsRequest(provider, name, filter, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetVersionsNextPageRequest(nextLink, provider, name, filter, context);
             return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => e.GetString(), ClientDiagnostics, _pipeline, "DeviceUpdateClient.GetVersions", "value", "nextLink", context);
         }
 
         /// <summary> Get a list of all update versions that match the specified provider and name. </summary>
         /// <param name="provider"> Update provider. </param>
         /// <param name="name"> Update name. </param>
+        /// <param name="filter"> Optional to filter updates by isDeployable property. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="provider"/> or <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="provider"/> or <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
-        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='GetVersions(string,string,CancellationToken)']/*" />
-        public virtual Pageable<string> GetVersions(string provider, string name, CancellationToken cancellationToken = default)
+        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='GetVersions(string,string,string,CancellationToken)']/*" />
+        public virtual Pageable<string> GetVersions(string provider, string name, string filter = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(provider, nameof(provider));
             Argument.AssertNotNullOrEmpty(name, nameof(name));
 
             RequestContext context = cancellationToken.CanBeCanceled ? new RequestContext { CancellationToken = cancellationToken } : null;
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetVersionsRequest(provider, name, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetVersionsNextPageRequest(nextLink, provider, name, context);
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetVersionsRequest(provider, name, filter, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetVersionsNextPageRequest(nextLink, provider, name, filter, context);
             return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => e.GetString(), ClientDiagnostics, _pipeline, "DeviceUpdateClient.GetVersions", "value", "nextLink", context);
         }
 
@@ -658,26 +660,27 @@ namespace Azure.IoT.DeviceUpdate
         /// </item>
         /// <item>
         /// <description>
-        /// Please try the simpler <see cref="GetVersionsAsync(string,string,CancellationToken)"/> convenience overload with strongly typed models first.
+        /// Please try the simpler <see cref="GetVersionsAsync(string,string,string,CancellationToken)"/> convenience overload with strongly typed models first.
         /// </description>
         /// </item>
         /// </list>
         /// </summary>
         /// <param name="provider"> Update provider. </param>
         /// <param name="name"> Update name. </param>
+        /// <param name="filter"> Optional to filter updates by isDeployable property. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="provider"/> or <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="provider"/> or <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="AsyncPageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
-        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='GetVersionsAsync(string,string,RequestContext)']/*" />
-        public virtual AsyncPageable<BinaryData> GetVersionsAsync(string provider, string name, RequestContext context)
+        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='GetVersionsAsync(string,string,string,RequestContext)']/*" />
+        public virtual AsyncPageable<BinaryData> GetVersionsAsync(string provider, string name, string filter, RequestContext context)
         {
             Argument.AssertNotNullOrEmpty(provider, nameof(provider));
             Argument.AssertNotNullOrEmpty(name, nameof(name));
 
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetVersionsRequest(provider, name, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetVersionsNextPageRequest(nextLink, provider, name, context);
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetVersionsRequest(provider, name, filter, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetVersionsNextPageRequest(nextLink, provider, name, filter, context);
             return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceUpdateClient.GetVersions", "value", "nextLink", context);
         }
 
@@ -691,26 +694,27 @@ namespace Azure.IoT.DeviceUpdate
         /// </item>
         /// <item>
         /// <description>
-        /// Please try the simpler <see cref="GetVersions(string,string,CancellationToken)"/> convenience overload with strongly typed models first.
+        /// Please try the simpler <see cref="GetVersions(string,string,string,CancellationToken)"/> convenience overload with strongly typed models first.
         /// </description>
         /// </item>
         /// </list>
         /// </summary>
         /// <param name="provider"> Update provider. </param>
         /// <param name="name"> Update name. </param>
+        /// <param name="filter"> Optional to filter updates by isDeployable property. </param>
         /// <param name="context"> The request context, which can override default behaviors of the client pipeline on a per-call basis. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="provider"/> or <paramref name="name"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="provider"/> or <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Pageable{T}"/> from the service containing a list of <see cref="BinaryData"/> objects. Details of the body schema for each item in the collection are in the Remarks section below. </returns>
-        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='GetVersions(string,string,RequestContext)']/*" />
-        public virtual Pageable<BinaryData> GetVersions(string provider, string name, RequestContext context)
+        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='GetVersions(string,string,string,RequestContext)']/*" />
+        public virtual Pageable<BinaryData> GetVersions(string provider, string name, string filter, RequestContext context)
         {
             Argument.AssertNotNullOrEmpty(provider, nameof(provider));
             Argument.AssertNotNullOrEmpty(name, nameof(name));
 
-            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetVersionsRequest(provider, name, context);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetVersionsNextPageRequest(nextLink, provider, name, context);
+            HttpMessage FirstPageRequest(int? pageSizeHint) => CreateGetVersionsRequest(provider, name, filter, context);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => CreateGetVersionsNextPageRequest(nextLink, provider, name, filter, context);
             return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => BinaryData.FromString(e.GetRawText()), ClientDiagnostics, _pipeline, "DeviceUpdateClient.GetVersions", "value", "nextLink", context);
         }
 
@@ -954,15 +958,15 @@ namespace Azure.IoT.DeviceUpdate
         /// <param name="updateToImport"> The update to be imported (see schema https://json.schemastore.org/azure-deviceupdate-import-manifest-5.0.json for details). </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="updateToImport"/> is null. </exception>
-        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='ImportUpdateAsync(WaitUntil,IEnumerable{ImportUpdateInputItem},CancellationToken)']/*" />
-        public virtual async Task<Operation<UpdateOperation>> ImportUpdateAsync(WaitUntil waitUntil, IEnumerable<ImportUpdateInputItem> updateToImport, CancellationToken cancellationToken = default)
+        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='StartImportUpdateAsync(WaitUntil,IEnumerable{ImportUpdateInputItem},CancellationToken)']/*" />
+        public virtual async Task<Operation<UpdateOperation>> StartImportUpdateAsync(WaitUntil waitUntil, IEnumerable<ImportUpdateInputItem> updateToImport, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(updateToImport, nameof(updateToImport));
 
             RequestContext context = FromCancellationToken(cancellationToken);
             using RequestContent content = RequestContentHelper.FromEnumerable(updateToImport);
-            Operation<BinaryData> response = await ImportUpdateAsync(waitUntil, content, context).ConfigureAwait(false);
-            return ProtocolOperationHelpers.Convert(response, UpdateOperation.FromResponse, ClientDiagnostics, "DeviceUpdateClient.ImportUpdate");
+            Operation<BinaryData> response = await StartImportUpdateAsync(waitUntil, content, context).ConfigureAwait(false);
+            return ProtocolOperationHelpers.Convert(response, UpdateOperation.FromResponse, ClientDiagnostics, "DeviceUpdateClient.StartImportUpdate");
         }
 
         /// <summary>
@@ -973,15 +977,15 @@ namespace Azure.IoT.DeviceUpdate
         /// <param name="updateToImport"> The update to be imported (see schema https://json.schemastore.org/azure-deviceupdate-import-manifest-5.0.json for details). </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="updateToImport"/> is null. </exception>
-        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='ImportUpdate(WaitUntil,IEnumerable{ImportUpdateInputItem},CancellationToken)']/*" />
-        public virtual Operation<UpdateOperation> ImportUpdate(WaitUntil waitUntil, IEnumerable<ImportUpdateInputItem> updateToImport, CancellationToken cancellationToken = default)
+        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='StartImportUpdate(WaitUntil,IEnumerable{ImportUpdateInputItem},CancellationToken)']/*" />
+        public virtual Operation<UpdateOperation> StartImportUpdate(WaitUntil waitUntil, IEnumerable<ImportUpdateInputItem> updateToImport, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(updateToImport, nameof(updateToImport));
 
             RequestContext context = FromCancellationToken(cancellationToken);
             using RequestContent content = RequestContentHelper.FromEnumerable(updateToImport);
-            Operation<BinaryData> response = ImportUpdate(waitUntil, content, context);
-            return ProtocolOperationHelpers.Convert(response, UpdateOperation.FromResponse, ClientDiagnostics, "DeviceUpdateClient.ImportUpdate");
+            Operation<BinaryData> response = StartImportUpdate(waitUntil, content, context);
+            return ProtocolOperationHelpers.Convert(response, UpdateOperation.FromResponse, ClientDiagnostics, "DeviceUpdateClient.StartImportUpdate");
         }
 
         /// <summary>
@@ -995,7 +999,7 @@ namespace Azure.IoT.DeviceUpdate
         /// </item>
         /// <item>
         /// <description>
-        /// Please try the simpler <see cref="ImportUpdateAsync(WaitUntil,IEnumerable{ImportUpdateInputItem},CancellationToken)"/> convenience overload with strongly typed models first.
+        /// Please try the simpler <see cref="StartImportUpdateAsync(WaitUntil,IEnumerable{ImportUpdateInputItem},CancellationToken)"/> convenience overload with strongly typed models first.
         /// </description>
         /// </item>
         /// </list>
@@ -1006,17 +1010,17 @@ namespace Azure.IoT.DeviceUpdate
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Operation"/> representing an asynchronous operation on the service. </returns>
-        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='ImportUpdateAsync(WaitUntil,RequestContent,RequestContext)']/*" />
-        public virtual async Task<Operation<BinaryData>> ImportUpdateAsync(WaitUntil waitUntil, RequestContent content, RequestContext context = null)
+        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='StartImportUpdateAsync(WaitUntil,RequestContent,RequestContext)']/*" />
+        public virtual async Task<Operation<BinaryData>> StartImportUpdateAsync(WaitUntil waitUntil, RequestContent content, RequestContext context = null)
         {
             Argument.AssertNotNull(content, nameof(content));
 
-            using var scope = ClientDiagnostics.CreateScope("DeviceUpdateClient.ImportUpdate");
+            using var scope = ClientDiagnostics.CreateScope("DeviceUpdateClient.StartImportUpdate");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateImportUpdateRequest(content, context);
-                return await ProtocolOperationHelpers.ProcessMessageAsync(_pipeline, message, ClientDiagnostics, "DeviceUpdateClient.ImportUpdate", OperationFinalStateVia.OperationLocation, context, waitUntil).ConfigureAwait(false);
+                using HttpMessage message = CreateStartImportUpdateRequest(content, context);
+                return await ProtocolOperationHelpers.ProcessMessageAsync(_pipeline, message, ClientDiagnostics, "DeviceUpdateClient.StartImportUpdate", OperationFinalStateVia.OperationLocation, context, waitUntil).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -1036,7 +1040,7 @@ namespace Azure.IoT.DeviceUpdate
         /// </item>
         /// <item>
         /// <description>
-        /// Please try the simpler <see cref="ImportUpdate(WaitUntil,IEnumerable{ImportUpdateInputItem},CancellationToken)"/> convenience overload with strongly typed models first.
+        /// Please try the simpler <see cref="StartImportUpdate(WaitUntil,IEnumerable{ImportUpdateInputItem},CancellationToken)"/> convenience overload with strongly typed models first.
         /// </description>
         /// </item>
         /// </list>
@@ -1047,17 +1051,17 @@ namespace Azure.IoT.DeviceUpdate
         /// <exception cref="ArgumentNullException"> <paramref name="content"/> is null. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Operation"/> representing an asynchronous operation on the service. </returns>
-        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='ImportUpdate(WaitUntil,RequestContent,RequestContext)']/*" />
-        public virtual Operation<BinaryData> ImportUpdate(WaitUntil waitUntil, RequestContent content, RequestContext context = null)
+        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='StartImportUpdate(WaitUntil,RequestContent,RequestContext)']/*" />
+        public virtual Operation<BinaryData> StartImportUpdate(WaitUntil waitUntil, RequestContent content, RequestContext context = null)
         {
             Argument.AssertNotNull(content, nameof(content));
 
-            using var scope = ClientDiagnostics.CreateScope("DeviceUpdateClient.ImportUpdate");
+            using var scope = ClientDiagnostics.CreateScope("DeviceUpdateClient.StartImportUpdate");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateImportUpdateRequest(content, context);
-                return ProtocolOperationHelpers.ProcessMessage(_pipeline, message, ClientDiagnostics, "DeviceUpdateClient.ImportUpdate", OperationFinalStateVia.OperationLocation, context, waitUntil);
+                using HttpMessage message = CreateStartImportUpdateRequest(content, context);
+                return ProtocolOperationHelpers.ProcessMessage(_pipeline, message, ClientDiagnostics, "DeviceUpdateClient.StartImportUpdate", OperationFinalStateVia.OperationLocation, context, waitUntil);
             }
             catch (Exception e)
             {
@@ -1087,19 +1091,19 @@ namespace Azure.IoT.DeviceUpdate
         /// <exception cref="ArgumentException"> <paramref name="provider"/>, <paramref name="name"/> or <paramref name="version"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Operation"/> representing an asynchronous operation on the service. </returns>
-        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='DeleteUpdateAsync(WaitUntil,string,string,string,RequestContext)']/*" />
-        public virtual async Task<Operation> DeleteUpdateAsync(WaitUntil waitUntil, string provider, string name, string version, RequestContext context = null)
+        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='StartDeleteUpdateAsync(WaitUntil,string,string,string,RequestContext)']/*" />
+        public virtual async Task<Operation> StartDeleteUpdateAsync(WaitUntil waitUntil, string provider, string name, string version, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(provider, nameof(provider));
             Argument.AssertNotNullOrEmpty(name, nameof(name));
             Argument.AssertNotNullOrEmpty(version, nameof(version));
 
-            using var scope = ClientDiagnostics.CreateScope("DeviceUpdateClient.DeleteUpdate");
+            using var scope = ClientDiagnostics.CreateScope("DeviceUpdateClient.StartDeleteUpdate");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateDeleteUpdateRequest(provider, name, version, context);
-                return await ProtocolOperationHelpers.ProcessMessageWithoutResponseValueAsync(_pipeline, message, ClientDiagnostics, "DeviceUpdateClient.DeleteUpdate", OperationFinalStateVia.OperationLocation, context, waitUntil).ConfigureAwait(false);
+                using HttpMessage message = CreateStartDeleteUpdateRequest(provider, name, version, context);
+                return await ProtocolOperationHelpers.ProcessMessageWithoutResponseValueAsync(_pipeline, message, ClientDiagnostics, "DeviceUpdateClient.StartDeleteUpdate", OperationFinalStateVia.OperationLocation, context, waitUntil).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -1129,19 +1133,19 @@ namespace Azure.IoT.DeviceUpdate
         /// <exception cref="ArgumentException"> <paramref name="provider"/>, <paramref name="name"/> or <paramref name="version"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Operation"/> representing an asynchronous operation on the service. </returns>
-        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='DeleteUpdate(WaitUntil,string,string,string,RequestContext)']/*" />
-        public virtual Operation DeleteUpdate(WaitUntil waitUntil, string provider, string name, string version, RequestContext context = null)
+        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='StartDeleteUpdate(WaitUntil,string,string,string,RequestContext)']/*" />
+        public virtual Operation StartDeleteUpdate(WaitUntil waitUntil, string provider, string name, string version, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(provider, nameof(provider));
             Argument.AssertNotNullOrEmpty(name, nameof(name));
             Argument.AssertNotNullOrEmpty(version, nameof(version));
 
-            using var scope = ClientDiagnostics.CreateScope("DeviceUpdateClient.DeleteUpdate");
+            using var scope = ClientDiagnostics.CreateScope("DeviceUpdateClient.StartDeleteUpdate");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateDeleteUpdateRequest(provider, name, version, context);
-                return ProtocolOperationHelpers.ProcessMessageWithoutResponseValue(_pipeline, message, ClientDiagnostics, "DeviceUpdateClient.DeleteUpdate", OperationFinalStateVia.OperationLocation, context, waitUntil);
+                using HttpMessage message = CreateStartDeleteUpdateRequest(provider, name, version, context);
+                return ProtocolOperationHelpers.ProcessMessageWithoutResponseValue(_pipeline, message, ClientDiagnostics, "DeviceUpdateClient.StartDeleteUpdate", OperationFinalStateVia.OperationLocation, context, waitUntil);
             }
             catch (Exception e)
             {
@@ -1201,7 +1205,7 @@ namespace Azure.IoT.DeviceUpdate
             return message;
         }
 
-        internal HttpMessage CreateImportUpdateRequest(RequestContent content, RequestContext context)
+        internal HttpMessage CreateStartImportUpdateRequest(RequestContent content, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier202);
             var request = message.Request;
@@ -1220,7 +1224,7 @@ namespace Azure.IoT.DeviceUpdate
             return message;
         }
 
-        internal HttpMessage CreateDeleteUpdateRequest(string provider, string name, string version, RequestContext context)
+        internal HttpMessage CreateStartDeleteUpdateRequest(string provider, string name, string version, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier202);
             var request = message.Request;
@@ -1278,7 +1282,7 @@ namespace Azure.IoT.DeviceUpdate
             return message;
         }
 
-        internal HttpMessage CreateGetVersionsRequest(string provider, string name, RequestContext context)
+        internal HttpMessage CreateGetVersionsRequest(string provider, string name, string filter, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;
@@ -1294,6 +1298,10 @@ namespace Azure.IoT.DeviceUpdate
             uri.AppendPath(name, true);
             uri.AppendPath("/versions", false);
             uri.AppendQuery("api-version", _apiVersion, true);
+            if (filter != null)
+            {
+                uri.AppendQuery("filter", filter, true);
+            }
             request.Uri = uri;
             request.Headers.Add("Accept", "application/json");
             return message;
@@ -1423,7 +1431,7 @@ namespace Azure.IoT.DeviceUpdate
             return message;
         }
 
-        internal HttpMessage CreateGetVersionsNextPageRequest(string nextLink, string provider, string name, RequestContext context)
+        internal HttpMessage CreateGetVersionsNextPageRequest(string nextLink, string provider, string name, string filter, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier200);
             var request = message.Request;

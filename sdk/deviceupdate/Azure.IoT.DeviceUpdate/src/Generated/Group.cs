@@ -28,6 +28,10 @@ namespace Azure.IoT.DeviceUpdate
         }
 
         /// <summary> Initializes a new instance of Group. </summary>
+        /// <param name="groupId">
+        /// Group identity. This is created from the value of the ADUGroup tag in the Iot
+        /// Hub's device/module twin or $default for devices with no tag.
+        /// </param>
         /// <param name="groupType"> Group type. </param>
         /// <param name="createdDateTime"> Date and time when the update was created. </param>
         /// <param name="deviceCount"> The number of devices in the group. </param>
@@ -35,8 +39,9 @@ namespace Azure.IoT.DeviceUpdate
         /// <param name="subgroupsWithUpdatesInProgressCount"> The count of subgroups with updates in progress. </param>
         /// <param name="subgroupsWithOnLatestUpdateCount"> The count of subgroups with devices on the latest update. </param>
         /// <param name="deployments"> The active deployment Ids for the group. </param>
-        internal Group(GroupType groupType, string createdDateTime, int? deviceCount, int? subgroupsWithNewUpdatesAvailableCount, int? subgroupsWithUpdatesInProgressCount, int? subgroupsWithOnLatestUpdateCount, IReadOnlyList<string> deployments)
+        internal Group(string groupId, GroupType groupType, string createdDateTime, int? deviceCount, int? subgroupsWithNewUpdatesAvailableCount, int? subgroupsWithUpdatesInProgressCount, int? subgroupsWithOnLatestUpdateCount, IReadOnlyList<string> deployments)
         {
+            GroupId = groupId;
             GroupType = groupType;
             CreatedDateTime = createdDateTime;
             DeviceCount = deviceCount;
@@ -46,6 +51,11 @@ namespace Azure.IoT.DeviceUpdate
             Deployments = deployments;
         }
 
+        /// <summary>
+        /// Group identity. This is created from the value of the ADUGroup tag in the Iot
+        /// Hub's device/module twin or $default for devices with no tag.
+        /// </summary>
+        public string GroupId { get; }
         /// <summary> Group type. </summary>
         public GroupType GroupType { get; }
         /// <summary> Date and time when the update was created. </summary>

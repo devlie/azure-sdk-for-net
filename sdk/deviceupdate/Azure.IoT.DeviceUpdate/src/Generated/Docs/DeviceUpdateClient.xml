@@ -611,7 +611,7 @@ foreach (BinaryData item in client.GetNames("<provider>", null))
 }
 ]]></code></example>
     </member>
-    <member name="GetVersionsAsync(string,string,CancellationToken)">
+    <member name="GetVersionsAsync(string,string,string,CancellationToken)">
       <example>
 This sample shows how to call GetVersionsAsync.
 <code><![CDATA[
@@ -629,12 +629,12 @@ Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
 DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-await foreach (string item in client.GetVersionsAsync("<provider>", "<name>"))
+await foreach (string item in client.GetVersionsAsync("<provider>", "<name>", filter: "<filter>"))
 {
 }
 ]]></code></example>
     </member>
-    <member name="GetVersions(string,string,CancellationToken)">
+    <member name="GetVersions(string,string,string,CancellationToken)">
       <example>
 This sample shows how to call GetVersions.
 <code><![CDATA[
@@ -652,12 +652,12 @@ Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
 DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-foreach (string item in client.GetVersions("<provider>", "<name>"))
+foreach (string item in client.GetVersions("<provider>", "<name>", filter: "<filter>"))
 {
 }
 ]]></code></example>
     </member>
-    <member name="GetVersionsAsync(string,string,RequestContext)">
+    <member name="GetVersionsAsync(string,string,string,RequestContext)">
       <example>
 This sample shows how to call GetVersionsAsync and parse the result.
 <code><![CDATA[
@@ -665,7 +665,7 @@ Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
 DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-await foreach (BinaryData item in client.GetVersionsAsync("<provider>", "<name>", null))
+await foreach (BinaryData item in client.GetVersionsAsync("<provider>", "<name>", null, null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
     Console.WriteLine(result.ToString());
@@ -677,14 +677,14 @@ Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
 DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-await foreach (BinaryData item in client.GetVersionsAsync("<provider>", "<name>", null))
+await foreach (BinaryData item in client.GetVersionsAsync("<provider>", "<name>", "<filter>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
     Console.WriteLine(result.ToString());
 }
 ]]></code></example>
     </member>
-    <member name="GetVersions(string,string,RequestContext)">
+    <member name="GetVersions(string,string,string,RequestContext)">
       <example>
 This sample shows how to call GetVersions and parse the result.
 <code><![CDATA[
@@ -692,7 +692,7 @@ Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
 DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-foreach (BinaryData item in client.GetVersions("<provider>", "<name>", null))
+foreach (BinaryData item in client.GetVersions("<provider>", "<name>", null, null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
     Console.WriteLine(result.ToString());
@@ -704,7 +704,7 @@ Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
 DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-foreach (BinaryData item in client.GetVersions("<provider>", "<name>", null))
+foreach (BinaryData item in client.GetVersions("<provider>", "<name>", "<filter>", null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
     Console.WriteLine(result.ToString());
@@ -868,6 +868,7 @@ DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", cre
 await foreach (BinaryData item in client.GetOperationStatusesAsync(null, null, null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("operationId").ToString());
     Console.WriteLine(result.GetProperty("status").ToString());
     Console.WriteLine(result.GetProperty("lastActionDateTime").ToString());
     Console.WriteLine(result.GetProperty("createdDateTime").ToString());
@@ -882,6 +883,7 @@ DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", cre
 await foreach (BinaryData item in client.GetOperationStatusesAsync("<filter>", 1234, null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("operationId").ToString());
     Console.WriteLine(result.GetProperty("status").ToString());
     Console.WriteLine(result.GetProperty("update").GetProperty("updateId").GetProperty("provider").ToString());
     Console.WriteLine(result.GetProperty("update").GetProperty("updateId").GetProperty("name").ToString());
@@ -911,6 +913,7 @@ DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", cre
 foreach (BinaryData item in client.GetOperationStatuses(null, null, null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("operationId").ToString());
     Console.WriteLine(result.GetProperty("status").ToString());
     Console.WriteLine(result.GetProperty("lastActionDateTime").ToString());
     Console.WriteLine(result.GetProperty("createdDateTime").ToString());
@@ -925,6 +928,7 @@ DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", cre
 foreach (BinaryData item in client.GetOperationStatuses("<filter>", 1234, null))
 {
     JsonElement result = JsonDocument.Parse(item.ToStream()).RootElement;
+    Console.WriteLine(result.GetProperty("operationId").ToString());
     Console.WriteLine(result.GetProperty("status").ToString());
     Console.WriteLine(result.GetProperty("update").GetProperty("updateId").GetProperty("provider").ToString());
     Console.WriteLine(result.GetProperty("update").GetProperty("updateId").GetProperty("name").ToString());
@@ -943,15 +947,15 @@ foreach (BinaryData item in client.GetOperationStatuses("<filter>", 1234, null))
 }
 ]]></code></example>
     </member>
-    <member name="ImportUpdateAsync(WaitUntil,IEnumerable{ImportUpdateInputItem},CancellationToken)">
+    <member name="StartImportUpdateAsync(WaitUntil,IEnumerable{ImportUpdateInputItem},CancellationToken)">
       <example>
-This sample shows how to call ImportUpdateAsync.
+This sample shows how to call StartImportUpdateAsync.
 <code><![CDATA[
 Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
 DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-Operation<UpdateOperation> operation = await client.ImportUpdateAsync(WaitUntil.Completed, new ImportUpdateInputItem[]
+Operation<UpdateOperation> operation = await client.StartImportUpdateAsync(WaitUntil.Completed, new ImportUpdateInputItem[]
 {
     new ImportUpdateInputItem(new ImportManifestMetadata("<url>", 1234L, new Dictionary<string, string>
     {
@@ -960,13 +964,13 @@ Operation<UpdateOperation> operation = await client.ImportUpdateAsync(WaitUntil.
 });
 UpdateOperation responseData = operation.Value;
 ]]></code>
-This sample shows how to call ImportUpdateAsync with all parameters.
+This sample shows how to call StartImportUpdateAsync with all parameters.
 <code><![CDATA[
 Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
 DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-Operation<UpdateOperation> operation = await client.ImportUpdateAsync(WaitUntil.Completed, new ImportUpdateInputItem[]
+Operation<UpdateOperation> operation = await client.StartImportUpdateAsync(WaitUntil.Completed, new ImportUpdateInputItem[]
 {
     new ImportUpdateInputItem(new ImportManifestMetadata("<url>", 1234L, new Dictionary<string, string>
     {
@@ -980,15 +984,15 @@ Operation<UpdateOperation> operation = await client.ImportUpdateAsync(WaitUntil.
 UpdateOperation responseData = operation.Value;
 ]]></code></example>
     </member>
-    <member name="ImportUpdate(WaitUntil,IEnumerable{ImportUpdateInputItem},CancellationToken)">
+    <member name="StartImportUpdate(WaitUntil,IEnumerable{ImportUpdateInputItem},CancellationToken)">
       <example>
-This sample shows how to call ImportUpdate.
+This sample shows how to call StartImportUpdate.
 <code><![CDATA[
 Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
 DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-Operation<UpdateOperation> operation = client.ImportUpdate(WaitUntil.Completed, new ImportUpdateInputItem[]
+Operation<UpdateOperation> operation = client.StartImportUpdate(WaitUntil.Completed, new ImportUpdateInputItem[]
 {
     new ImportUpdateInputItem(new ImportManifestMetadata("<url>", 1234L, new Dictionary<string, string>
     {
@@ -997,13 +1001,13 @@ Operation<UpdateOperation> operation = client.ImportUpdate(WaitUntil.Completed, 
 });
 UpdateOperation responseData = operation.Value;
 ]]></code>
-This sample shows how to call ImportUpdate with all parameters.
+This sample shows how to call StartImportUpdate with all parameters.
 <code><![CDATA[
 Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
 DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-Operation<UpdateOperation> operation = client.ImportUpdate(WaitUntil.Completed, new ImportUpdateInputItem[]
+Operation<UpdateOperation> operation = client.StartImportUpdate(WaitUntil.Completed, new ImportUpdateInputItem[]
 {
     new ImportUpdateInputItem(new ImportManifestMetadata("<url>", 1234L, new Dictionary<string, string>
     {
@@ -1017,9 +1021,9 @@ Operation<UpdateOperation> operation = client.ImportUpdate(WaitUntil.Completed, 
 UpdateOperation responseData = operation.Value;
 ]]></code></example>
     </member>
-    <member name="ImportUpdateAsync(WaitUntil,RequestContent,RequestContext)">
+    <member name="StartImportUpdateAsync(WaitUntil,RequestContent,RequestContext)">
       <example>
-This sample shows how to call ImportUpdateAsync and parse the result.
+This sample shows how to call StartImportUpdateAsync and parse the result.
 <code><![CDATA[
 Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
@@ -1040,15 +1044,16 @@ using RequestContent content = RequestContent.Create(new object[]
         },
     }
 });
-Operation<BinaryData> operation = await client.ImportUpdateAsync(WaitUntil.Completed, content);
+Operation<BinaryData> operation = await client.StartImportUpdateAsync(WaitUntil.Completed, content);
 BinaryData responseData = operation.Value;
 
 JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
+Console.WriteLine(result.GetProperty("operationId").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
 Console.WriteLine(result.GetProperty("lastActionDateTime").ToString());
 Console.WriteLine(result.GetProperty("createdDateTime").ToString());
 ]]></code>
-This sample shows how to call ImportUpdateAsync with all parameters and request content and parse the result.
+This sample shows how to call StartImportUpdateAsync with all parameters and request content and parse the result.
 <code><![CDATA[
 Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
@@ -1078,10 +1083,11 @@ using RequestContent content = RequestContent.Create(new object[]
         },
     }
 });
-Operation<BinaryData> operation = await client.ImportUpdateAsync(WaitUntil.Completed, content);
+Operation<BinaryData> operation = await client.StartImportUpdateAsync(WaitUntil.Completed, content);
 BinaryData responseData = operation.Value;
 
 JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
+Console.WriteLine(result.GetProperty("operationId").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
 Console.WriteLine(result.GetProperty("update").GetProperty("updateId").GetProperty("provider").ToString());
 Console.WriteLine(result.GetProperty("update").GetProperty("updateId").GetProperty("name").ToString());
@@ -1099,9 +1105,9 @@ Console.WriteLine(result.GetProperty("createdDateTime").ToString());
 Console.WriteLine(result.GetProperty("etag").ToString());
 ]]></code></example>
     </member>
-    <member name="ImportUpdate(WaitUntil,RequestContent,RequestContext)">
+    <member name="StartImportUpdate(WaitUntil,RequestContent,RequestContext)">
       <example>
-This sample shows how to call ImportUpdate and parse the result.
+This sample shows how to call StartImportUpdate and parse the result.
 <code><![CDATA[
 Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
@@ -1122,15 +1128,16 @@ using RequestContent content = RequestContent.Create(new object[]
         },
     }
 });
-Operation<BinaryData> operation = client.ImportUpdate(WaitUntil.Completed, content);
+Operation<BinaryData> operation = client.StartImportUpdate(WaitUntil.Completed, content);
 BinaryData responseData = operation.Value;
 
 JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
+Console.WriteLine(result.GetProperty("operationId").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
 Console.WriteLine(result.GetProperty("lastActionDateTime").ToString());
 Console.WriteLine(result.GetProperty("createdDateTime").ToString());
 ]]></code>
-This sample shows how to call ImportUpdate with all parameters and request content and parse the result.
+This sample shows how to call StartImportUpdate with all parameters and request content and parse the result.
 <code><![CDATA[
 Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
@@ -1160,10 +1167,11 @@ using RequestContent content = RequestContent.Create(new object[]
         },
     }
 });
-Operation<BinaryData> operation = client.ImportUpdate(WaitUntil.Completed, content);
+Operation<BinaryData> operation = client.StartImportUpdate(WaitUntil.Completed, content);
 BinaryData responseData = operation.Value;
 
 JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
+Console.WriteLine(result.GetProperty("operationId").ToString());
 Console.WriteLine(result.GetProperty("status").ToString());
 Console.WriteLine(result.GetProperty("update").GetProperty("updateId").GetProperty("provider").ToString());
 Console.WriteLine(result.GetProperty("update").GetProperty("updateId").GetProperty("name").ToString());
@@ -1181,42 +1189,42 @@ Console.WriteLine(result.GetProperty("createdDateTime").ToString());
 Console.WriteLine(result.GetProperty("etag").ToString());
 ]]></code></example>
     </member>
-    <member name="DeleteUpdateAsync(WaitUntil,string,string,string,RequestContext)">
+    <member name="StartDeleteUpdateAsync(WaitUntil,string,string,string,RequestContext)">
       <example>
-This sample shows how to call DeleteUpdateAsync.
+This sample shows how to call StartDeleteUpdateAsync.
 <code><![CDATA[
 Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
 DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-Operation operation = await client.DeleteUpdateAsync(WaitUntil.Completed, "<provider>", "<name>", "<version>");
+Operation operation = await client.StartDeleteUpdateAsync(WaitUntil.Completed, "<provider>", "<name>", "<version>");
 ]]></code>
-This sample shows how to call DeleteUpdateAsync with all parameters.
+This sample shows how to call StartDeleteUpdateAsync with all parameters.
 <code><![CDATA[
 Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
 DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-Operation operation = await client.DeleteUpdateAsync(WaitUntil.Completed, "<provider>", "<name>", "<version>");
+Operation operation = await client.StartDeleteUpdateAsync(WaitUntil.Completed, "<provider>", "<name>", "<version>");
 ]]></code></example>
     </member>
-    <member name="DeleteUpdate(WaitUntil,string,string,string,RequestContext)">
+    <member name="StartDeleteUpdate(WaitUntil,string,string,string,RequestContext)">
       <example>
-This sample shows how to call DeleteUpdate.
+This sample shows how to call StartDeleteUpdate.
 <code><![CDATA[
 Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
 DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-Operation operation = client.DeleteUpdate(WaitUntil.Completed, "<provider>", "<name>", "<version>");
+Operation operation = client.StartDeleteUpdate(WaitUntil.Completed, "<provider>", "<name>", "<version>");
 ]]></code>
-This sample shows how to call DeleteUpdate with all parameters.
+This sample shows how to call StartDeleteUpdate with all parameters.
 <code><![CDATA[
 Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
 DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-Operation operation = client.DeleteUpdate(WaitUntil.Completed, "<provider>", "<name>", "<version>");
+Operation operation = client.StartDeleteUpdate(WaitUntil.Completed, "<provider>", "<name>", "<version>");
 ]]></code></example>
     </member>
   </members>

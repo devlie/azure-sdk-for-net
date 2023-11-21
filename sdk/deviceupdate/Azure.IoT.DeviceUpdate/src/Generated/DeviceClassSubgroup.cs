@@ -30,18 +30,30 @@ namespace Azure.IoT.DeviceUpdate
         }
 
         /// <summary> Initializes a new instance of DeviceClassSubgroup. </summary>
+        /// <param name="deviceClassId">
+        /// Device class subgroup identity. This is generated from the model Id and the
+        /// compat properties reported by the device update agent in the Device Update PnP
+        /// interface in IoT Hub. It is a hex-encoded SHA1 hash.
+        /// </param>
         /// <param name="groupId"> Group identity. </param>
         /// <param name="createdDateTime"> Date and time when the device class subgroup was created. </param>
         /// <param name="deviceCount"> The number of devices in the device class subgroup. </param>
         /// <param name="deploymentId"> The active deployment Id for the device class subgroup. </param>
-        internal DeviceClassSubgroup(string groupId, string createdDateTime, int? deviceCount, string deploymentId)
+        internal DeviceClassSubgroup(string deviceClassId, string groupId, string createdDateTime, int? deviceCount, string deploymentId)
         {
+            DeviceClassId = deviceClassId;
             GroupId = groupId;
             CreatedDateTime = createdDateTime;
             DeviceCount = deviceCount;
             DeploymentId = deploymentId;
         }
 
+        /// <summary>
+        /// Device class subgroup identity. This is generated from the model Id and the
+        /// compat properties reported by the device update agent in the Device Update PnP
+        /// interface in IoT Hub. It is a hex-encoded SHA1 hash.
+        /// </summary>
+        public string DeviceClassId { get; }
         /// <summary> Group identity. </summary>
         public string GroupId { get; }
         /// <summary> Date and time when the device class subgroup was created. </summary>

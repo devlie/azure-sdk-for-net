@@ -19,11 +19,17 @@ namespace Azure.IoT.DeviceUpdate
             {
                 return null;
             }
+            string deviceClassId = default;
             Optional<string> friendlyName = default;
             DeviceClassProperties deviceClassProperties = default;
             Optional<UpdateInfo> bestCompatibleUpdate = default;
             foreach (var property in element.EnumerateObject())
             {
+                if (property.NameEquals("deviceClassId"u8))
+                {
+                    deviceClassId = property.Value.GetString();
+                    continue;
+                }
                 if (property.NameEquals("friendlyName"u8))
                 {
                     friendlyName = property.Value.GetString();
@@ -44,7 +50,7 @@ namespace Azure.IoT.DeviceUpdate
                     continue;
                 }
             }
-            return new DeviceClass(friendlyName.Value, deviceClassProperties, bestCompatibleUpdate.Value);
+            return new DeviceClass(deviceClassId, friendlyName.Value, deviceClassProperties, bestCompatibleUpdate.Value);
         }
 
         /// <summary> Deserializes the model from a raw response. </summary>

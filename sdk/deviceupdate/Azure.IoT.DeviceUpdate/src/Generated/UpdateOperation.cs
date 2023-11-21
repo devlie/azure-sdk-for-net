@@ -25,6 +25,7 @@ namespace Azure.IoT.DeviceUpdate
         }
 
         /// <summary> Initializes a new instance of UpdateOperation. </summary>
+        /// <param name="operationId"> Operation Id. </param>
         /// <param name="status"> Operation status. </param>
         /// <param name="update">
         /// The update being imported or deleted. For import, this property will only be
@@ -39,8 +40,9 @@ namespace Azure.IoT.DeviceUpdate
         /// <param name="lastActionDateTime"> Date and time in UTC when the operation status was last updated. </param>
         /// <param name="createdDateTime"> Date and time in UTC when the operation was created. </param>
         /// <param name="etag"> Operation ETag. </param>
-        internal UpdateOperation(OperationStatus status, UpdateInfo update, string resourceLocation, ResponseError error, string traceId, DateTimeOffset lastActionDateTime, DateTimeOffset createdDateTime, string etag)
+        internal UpdateOperation(string operationId, OperationStatus status, UpdateInfo update, string resourceLocation, ResponseError error, string traceId, DateTimeOffset lastActionDateTime, DateTimeOffset createdDateTime, string etag)
         {
+            OperationId = operationId;
             Status = status;
             Update = update;
             ResourceLocation = resourceLocation;
@@ -51,6 +53,8 @@ namespace Azure.IoT.DeviceUpdate
             Etag = etag;
         }
 
+        /// <summary> Operation Id. </summary>
+        public string OperationId { get; }
         /// <summary> Operation status. </summary>
         public OperationStatus Status { get; }
         /// <summary>

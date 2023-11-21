@@ -10,5 +10,4 @@ namespace Azure.IoT.DeviceUpdate
     /// </summary>
     [CodeGenType("AzureIotDeviceUpdateClientOptions")]
     public partial class DeviceUpdateClientOptions { }
-
 }

@@ -19,12 +19,18 @@ namespace Azure.IoT.DeviceUpdate
             {
                 return null;
             }
+            string deviceId = default;
             Optional<string> moduleId = default;
             int retryCount = default;
             bool movedOnToNewDeployment = default;
             DeviceDeploymentState deviceState = default;
             foreach (var property in element.EnumerateObject())
             {
+                if (property.NameEquals("deviceId"u8))
+                {
+                    deviceId = property.Value.GetString();
+                    continue;
+                }
                 if (property.NameEquals("moduleId"u8))
                 {
                     moduleId = property.Value.GetString();
@@ -46,7 +52,7 @@ namespace Azure.IoT.DeviceUpdate
                     continue;
                 }
             }
-            return new DeploymentDeviceState(moduleId.Value, retryCount, movedOnToNewDeployment, deviceState);
+            return new DeploymentDeviceState(deviceId, moduleId.Value, retryCount, movedOnToNewDeployment, deviceState);
         }
 
         /// <summary> Deserializes the model from a raw response. </summary>
