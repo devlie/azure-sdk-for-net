@@ -42,7 +42,7 @@ namespace Azure.IoT.DeviceUpdate
         /// <param name="credential"> A credential used to authenticate to an Azure Service. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="endpoint"/>, <paramref name="instanceId"/> or <paramref name="credential"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="instanceId"/> is an empty string, and was expected to be non-empty. </exception>
-        public InstanceManagementClient(Uri endpoint, string instanceId, TokenCredential credential) : this(endpoint, instanceId, credential, new AzureIoTDeviceUpdateClientOptions())
+        public InstanceManagementClient(Uri endpoint, string instanceId, TokenCredential credential) : this(endpoint, instanceId, credential, new DeviceUpdateClientOptions())
         {
         }
 
@@ -53,12 +53,12 @@ namespace Azure.IoT.DeviceUpdate
         /// <param name="options"> The options for configuring the client. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="endpoint"/>, <paramref name="instanceId"/> or <paramref name="credential"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="instanceId"/> is an empty string, and was expected to be non-empty. </exception>
-        public InstanceManagementClient(Uri endpoint, string instanceId, TokenCredential credential, AzureIoTDeviceUpdateClientOptions options)
+        public InstanceManagementClient(Uri endpoint, string instanceId, TokenCredential credential, DeviceUpdateClientOptions options)
         {
             Argument.AssertNotNull(endpoint, nameof(endpoint));
             Argument.AssertNotNullOrEmpty(instanceId, nameof(instanceId));
             Argument.AssertNotNull(credential, nameof(credential));
-            options ??= new AzureIoTDeviceUpdateClientOptions();
+            options ??= new DeviceUpdateClientOptions();
 
             ClientDiagnostics = new ClientDiagnostics(options, true);
             _tokenCredential = credential;

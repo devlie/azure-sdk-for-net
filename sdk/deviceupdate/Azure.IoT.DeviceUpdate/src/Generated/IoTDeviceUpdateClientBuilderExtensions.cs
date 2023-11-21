@@ -18,55 +18,55 @@ namespace Microsoft.Extensions.Azure
         /// <param name="builder"> The builder to register with. </param>
         /// <param name="endpoint"> The Device Update for IoT Hub account endpoint (hostname only, no protocol). </param>
         /// <param name="instanceId"> The Device Update for IoT Hub account instance identifier. </param>
-        public static IAzureClientBuilder<DeviceUpdateClient, AzureIoTDeviceUpdateClientOptions> AddDeviceUpdateClient<TBuilder>(this TBuilder builder, Uri endpoint, string instanceId)
+        public static IAzureClientBuilder<DeviceUpdateClient, DeviceUpdateClientOptions> AddDeviceUpdateClient<TBuilder>(this TBuilder builder, Uri endpoint, string instanceId)
         where TBuilder : IAzureClientFactoryBuilderWithCredential
         {
-            return builder.RegisterClientFactory<DeviceUpdateClient, AzureIoTDeviceUpdateClientOptions>((options, cred) => new DeviceUpdateClient(endpoint, instanceId, cred, options));
+            return builder.RegisterClientFactory<DeviceUpdateClient, DeviceUpdateClientOptions>((options, cred) => new DeviceUpdateClient(endpoint, instanceId, cred, options));
         }
 
         /// <summary> Registers a <see cref="DeviceManagementClient"/> instance. </summary>
         /// <param name="builder"> The builder to register with. </param>
         /// <param name="endpoint"> The Device Update for IoT Hub account endpoint (hostname only, no protocol). </param>
         /// <param name="instanceId"> The Device Update for IoT Hub account instance identifier. </param>
-        public static IAzureClientBuilder<DeviceManagementClient, AzureIoTDeviceUpdateClientOptions> AddDeviceManagementClient<TBuilder>(this TBuilder builder, Uri endpoint, string instanceId)
+        public static IAzureClientBuilder<DeviceManagementClient, DeviceUpdateClientOptions> AddDeviceManagementClient<TBuilder>(this TBuilder builder, Uri endpoint, string instanceId)
         where TBuilder : IAzureClientFactoryBuilderWithCredential
         {
-            return builder.RegisterClientFactory<DeviceManagementClient, AzureIoTDeviceUpdateClientOptions>((options, cred) => new DeviceManagementClient(endpoint, instanceId, cred, options));
+            return builder.RegisterClientFactory<DeviceManagementClient, DeviceUpdateClientOptions>((options, cred) => new DeviceManagementClient(endpoint, instanceId, cred, options));
         }
 
         /// <summary> Registers a <see cref="InstanceManagementClient"/> instance. </summary>
         /// <param name="builder"> The builder to register with. </param>
         /// <param name="endpoint"> The Device Update for IoT Hub account endpoint (hostname only, no protocol). </param>
         /// <param name="instanceId"> The Device Update for IoT Hub account instance identifier. </param>
-        public static IAzureClientBuilder<InstanceManagementClient, AzureIoTDeviceUpdateClientOptions> AddInstanceManagementClient<TBuilder>(this TBuilder builder, Uri endpoint, string instanceId)
+        public static IAzureClientBuilder<InstanceManagementClient, DeviceUpdateClientOptions> AddInstanceManagementClient<TBuilder>(this TBuilder builder, Uri endpoint, string instanceId)
         where TBuilder : IAzureClientFactoryBuilderWithCredential
         {
-            return builder.RegisterClientFactory<InstanceManagementClient, AzureIoTDeviceUpdateClientOptions>((options, cred) => new InstanceManagementClient(endpoint, instanceId, cred, options));
+            return builder.RegisterClientFactory<InstanceManagementClient, DeviceUpdateClientOptions>((options, cred) => new InstanceManagementClient(endpoint, instanceId, cred, options));
         }
 
         /// <summary> Registers a <see cref="DeviceUpdateClient"/> instance. </summary>
         /// <param name="builder"> The builder to register with. </param>
         /// <param name="configuration"> The configuration values. </param>
-        public static IAzureClientBuilder<DeviceUpdateClient, AzureIoTDeviceUpdateClientOptions> AddDeviceUpdateClient<TBuilder, TConfiguration>(this TBuilder builder, TConfiguration configuration)
+        public static IAzureClientBuilder<DeviceUpdateClient, DeviceUpdateClientOptions> AddDeviceUpdateClient<TBuilder, TConfiguration>(this TBuilder builder, TConfiguration configuration)
         where TBuilder : IAzureClientFactoryBuilderWithConfiguration<TConfiguration>
         {
-            return builder.RegisterClientFactory<DeviceUpdateClient, AzureIoTDeviceUpdateClientOptions>(configuration);
+            return builder.RegisterClientFactory<DeviceUpdateClient, DeviceUpdateClientOptions>(configuration);
         }
         /// <summary> Registers a <see cref="DeviceManagementClient"/> instance. </summary>
         /// <param name="builder"> The builder to register with. </param>
         /// <param name="configuration"> The configuration values. </param>
-        public static IAzureClientBuilder<DeviceManagementClient, AzureIoTDeviceUpdateClientOptions> AddDeviceManagementClient<TBuilder, TConfiguration>(this TBuilder builder, TConfiguration configuration)
+        public static IAzureClientBuilder<DeviceManagementClient, DeviceUpdateClientOptions> AddDeviceManagementClient<TBuilder, TConfiguration>(this TBuilder builder, TConfiguration configuration)
         where TBuilder : IAzureClientFactoryBuilderWithConfiguration<TConfiguration>
         {
-            return builder.RegisterClientFactory<DeviceManagementClient, AzureIoTDeviceUpdateClientOptions>(configuration);
+            return builder.RegisterClientFactory<DeviceManagementClient, DeviceUpdateClientOptions>(configuration);
         }
         /// <summary> Registers a <see cref="InstanceManagementClient"/> instance. </summary>
         /// <param name="builder"> The builder to register with. </param>
         /// <param name="configuration"> The configuration values. </param>
-        public static IAzureClientBuilder<InstanceManagementClient, AzureIoTDeviceUpdateClientOptions> AddInstanceManagementClient<TBuilder, TConfiguration>(this TBuilder builder, TConfiguration configuration)
+        public static IAzureClientBuilder<InstanceManagementClient, DeviceUpdateClientOptions> AddInstanceManagementClient<TBuilder, TConfiguration>(this TBuilder builder, TConfiguration configuration)
         where TBuilder : IAzureClientFactoryBuilderWithConfiguration<TConfiguration>
         {
-            return builder.RegisterClientFactory<InstanceManagementClient, AzureIoTDeviceUpdateClientOptions>(configuration);
+            return builder.RegisterClientFactory<InstanceManagementClient, DeviceUpdateClientOptions>(configuration);
         }
     }
 }

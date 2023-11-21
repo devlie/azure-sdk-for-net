@@ -11,7 +11,7 @@ using Azure.Core;
 namespace Azure.IoT.DeviceUpdate
 {
     /// <summary> Client options for Azure.IoT.DeviceUpdate library clients. </summary>
-    public partial class AzureIoTDeviceUpdateClientOptions : ClientOptions
+    public partial class DeviceUpdateClientOptions : ClientOptions
     {
         private const ServiceVersion LatestVersion = ServiceVersion.V2023_10_01_Preview;
 
@@ -24,8 +24,8 @@ namespace Azure.IoT.DeviceUpdate
 
         internal string Version { get; }
 
-        /// <summary> Initializes new instance of AzureIoTDeviceUpdateClientOptions. </summary>
-        public AzureIoTDeviceUpdateClientOptions(ServiceVersion version = LatestVersion)
+        /// <summary> Initializes new instance of DeviceUpdateClientOptions. </summary>
+        public DeviceUpdateClientOptions(ServiceVersion version = LatestVersion)
         {
             Version = version switch
             {
