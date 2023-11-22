@@ -1189,42 +1189,42 @@ Console.WriteLine(result.GetProperty("createdDateTime").ToString());
 Console.WriteLine(result.GetProperty("etag").ToString());
 ]]></code></example>
     </member>
-    <member name="StartDeleteUpdateAsync(WaitUntil,string,string,string,RequestContext)">
+    <member name="DeleteUpdateAsync(WaitUntil,string,string,string,RequestContext)">
       <example>
-This sample shows how to call StartDeleteUpdateAsync.
+This sample shows how to call DeleteUpdateAsync.
 <code><![CDATA[
 Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
 DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-Operation operation = await client.StartDeleteUpdateAsync(WaitUntil.Completed, "<provider>", "<name>", "<version>");
+Operation operation = await client.DeleteUpdateAsync(WaitUntil.Completed, "<provider>", "<name>", "<version>");
 ]]></code>
-This sample shows how to call StartDeleteUpdateAsync with all parameters.
+This sample shows how to call DeleteUpdateAsync with all parameters.
 <code><![CDATA[
 Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
 DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-Operation operation = await client.StartDeleteUpdateAsync(WaitUntil.Completed, "<provider>", "<name>", "<version>");
+Operation operation = await client.DeleteUpdateAsync(WaitUntil.Completed, "<provider>", "<name>", "<version>");
 ]]></code></example>
     </member>
-    <member name="StartDeleteUpdate(WaitUntil,string,string,string,RequestContext)">
+    <member name="DeleteUpdate(WaitUntil,string,string,string,RequestContext)">
       <example>
-This sample shows how to call StartDeleteUpdate.
+This sample shows how to call DeleteUpdate.
 <code><![CDATA[
 Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
 DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-Operation operation = client.StartDeleteUpdate(WaitUntil.Completed, "<provider>", "<name>", "<version>");
+Operation operation = client.DeleteUpdate(WaitUntil.Completed, "<provider>", "<name>", "<version>");
 ]]></code>
-This sample shows how to call StartDeleteUpdate with all parameters.
+This sample shows how to call DeleteUpdate with all parameters.
 <code><![CDATA[
 Uri endpoint = new Uri("<https://my-service.azure.com>");
 TokenCredential credential = new DefaultAzureCredential();
 DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-Operation operation = client.StartDeleteUpdate(WaitUntil.Completed, "<provider>", "<name>", "<version>");
+Operation operation = client.DeleteUpdate(WaitUntil.Completed, "<provider>", "<name>", "<version>");
 ]]></code></example>
     </member>
   </members>

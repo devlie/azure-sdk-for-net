@@ -1091,19 +1091,19 @@ namespace Azure.IoT.DeviceUpdate
         /// <exception cref="ArgumentException"> <paramref name="provider"/>, <paramref name="name"/> or <paramref name="version"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Operation"/> representing an asynchronous operation on the service. </returns>
-        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='StartDeleteUpdateAsync(WaitUntil,string,string,string,RequestContext)']/*" />
-        public virtual async Task<Operation> StartDeleteUpdateAsync(WaitUntil waitUntil, string provider, string name, string version, RequestContext context = null)
+        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='DeleteUpdateAsync(WaitUntil,string,string,string,RequestContext)']/*" />
+        public virtual async Task<Operation> DeleteUpdateAsync(WaitUntil waitUntil, string provider, string name, string version, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(provider, nameof(provider));
             Argument.AssertNotNullOrEmpty(name, nameof(name));
             Argument.AssertNotNullOrEmpty(version, nameof(version));
 
-            using var scope = ClientDiagnostics.CreateScope("DeviceUpdateClient.StartDeleteUpdate");
+            using var scope = ClientDiagnostics.CreateScope("DeviceUpdateClient.DeleteUpdate");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateStartDeleteUpdateRequest(provider, name, version, context);
-                return await ProtocolOperationHelpers.ProcessMessageWithoutResponseValueAsync(_pipeline, message, ClientDiagnostics, "DeviceUpdateClient.StartDeleteUpdate", OperationFinalStateVia.OperationLocation, context, waitUntil).ConfigureAwait(false);
+                using HttpMessage message = CreateDeleteUpdateRequest(provider, name, version, context);
+                return await ProtocolOperationHelpers.ProcessMessageWithoutResponseValueAsync(_pipeline, message, ClientDiagnostics, "DeviceUpdateClient.DeleteUpdate", OperationFinalStateVia.OperationLocation, context, waitUntil).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -1133,19 +1133,19 @@ namespace Azure.IoT.DeviceUpdate
         /// <exception cref="ArgumentException"> <paramref name="provider"/>, <paramref name="name"/> or <paramref name="version"/> is an empty string, and was expected to be non-empty. </exception>
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Operation"/> representing an asynchronous operation on the service. </returns>
-        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='StartDeleteUpdate(WaitUntil,string,string,string,RequestContext)']/*" />
-        public virtual Operation StartDeleteUpdate(WaitUntil waitUntil, string provider, string name, string version, RequestContext context = null)
+        /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='DeleteUpdate(WaitUntil,string,string,string,RequestContext)']/*" />
+        public virtual Operation DeleteUpdate(WaitUntil waitUntil, string provider, string name, string version, RequestContext context = null)
         {
             Argument.AssertNotNullOrEmpty(provider, nameof(provider));
             Argument.AssertNotNullOrEmpty(name, nameof(name));
             Argument.AssertNotNullOrEmpty(version, nameof(version));
 
-            using var scope = ClientDiagnostics.CreateScope("DeviceUpdateClient.StartDeleteUpdate");
+            using var scope = ClientDiagnostics.CreateScope("DeviceUpdateClient.DeleteUpdate");
             scope.Start();
             try
             {
-                using HttpMessage message = CreateStartDeleteUpdateRequest(provider, name, version, context);
-                return ProtocolOperationHelpers.ProcessMessageWithoutResponseValue(_pipeline, message, ClientDiagnostics, "DeviceUpdateClient.StartDeleteUpdate", OperationFinalStateVia.OperationLocation, context, waitUntil);
+                using HttpMessage message = CreateDeleteUpdateRequest(provider, name, version, context);
+                return ProtocolOperationHelpers.ProcessMessageWithoutResponseValue(_pipeline, message, ClientDiagnostics, "DeviceUpdateClient.DeleteUpdate", OperationFinalStateVia.OperationLocation, context, waitUntil);
             }
             catch (Exception e)
             {
@@ -1224,7 +1224,7 @@ namespace Azure.IoT.DeviceUpdate
             return message;
         }
 
-        internal HttpMessage CreateStartDeleteUpdateRequest(string provider, string name, string version, RequestContext context)
+        internal HttpMessage CreateDeleteUpdateRequest(string provider, string name, string version, RequestContext context)
         {
             var message = _pipeline.CreateMessage(context, ResponseClassifier202);
             var request = message.Request;
