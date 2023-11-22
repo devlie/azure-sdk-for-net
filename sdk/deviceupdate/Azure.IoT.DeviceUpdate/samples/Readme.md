@@ -17,3 +17,4 @@ description: Samples for the Azure.IoT.DeviceUpdate client library
  - [Delete existing device update](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/deviceupdate/Azure.IoT.DeviceUpdate/samples/Sample4_DeleteUpdate.md)
  - [Get device information](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/deviceupdate/Azure.IoT.DeviceUpdate/samples/Sample5_GetDevice.md)
  - [Deploy device update](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/deviceupdate/Azure.IoT.DeviceUpdate/samples/Sample6_DeployUpdate.md)
+ - [Check current usage statistics and limits](./Sample7_GetLimitsAsync.md)
