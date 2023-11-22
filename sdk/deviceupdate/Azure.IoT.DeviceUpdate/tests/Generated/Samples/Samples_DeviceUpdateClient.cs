@@ -1084,7 +1084,7 @@ key = "<hashes>",
 },
 }
             });
-            Operation<BinaryData> operation = client.StartImportUpdate(WaitUntil.Completed, content);
+            Operation<BinaryData> operation = client.StartImportUpdateTODO(WaitUntil.Completed, content);
             BinaryData responseData = operation.Value;
 
             JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
@@ -1117,7 +1117,7 @@ key = "<hashes>",
 },
 }
             });
-            Operation<BinaryData> operation = await client.StartImportUpdateAsync(WaitUntil.Completed, content);
+            Operation<BinaryData> operation = await client.StartImportUpdateAsyncTODO(WaitUntil.Completed, content);
             BinaryData responseData = operation.Value;
 
             JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
@@ -1195,7 +1195,7 @@ url = "<url>",
 },
 }
             });
-            Operation<BinaryData> operation = client.StartImportUpdate(WaitUntil.Completed, content);
+            Operation<BinaryData> operation = client.StartImportUpdateTODO(WaitUntil.Completed, content);
             BinaryData responseData = operation.Value;
 
             JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
@@ -1249,7 +1249,7 @@ url = "<url>",
 },
 }
             });
-            Operation<BinaryData> operation = await client.StartImportUpdateAsync(WaitUntil.Completed, content);
+            Operation<BinaryData> operation = await client.StartImportUpdateAsyncTODO(WaitUntil.Completed, content);
             BinaryData responseData = operation.Value;
 
             JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;

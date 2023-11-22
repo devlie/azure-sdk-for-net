@@ -4627,7 +4627,7 @@ ModuleId = "<moduleId>",
             DeviceManagementClient client = new DeviceManagementClient(endpoint, "<instanceId>", credential);
 
             using RequestContent content = RequestContent.Create("Devices");
-            Operation<BinaryData> operation = client.ImportDevices(WaitUntil.Completed, content);
+            Operation<BinaryData> operation = client.ImportDevicesTODO(WaitUntil.Completed, content);
             BinaryData responseData = operation.Value;
 
             JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
@@ -4646,7 +4646,7 @@ ModuleId = "<moduleId>",
             DeviceManagementClient client = new DeviceManagementClient(endpoint, "<instanceId>", credential);
 
             using RequestContent content = RequestContent.Create("Devices");
-            Operation<BinaryData> operation = await client.ImportDevicesAsync(WaitUntil.Completed, content);
+            Operation<BinaryData> operation = await client.ImportDevicesAsyncTODO(WaitUntil.Completed, content);
             BinaryData responseData = operation.Value;
 
             JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
@@ -4689,7 +4689,7 @@ ModuleId = "<moduleId>",
             DeviceManagementClient client = new DeviceManagementClient(endpoint, "<instanceId>", credential);
 
             using RequestContent content = RequestContent.Create("Devices");
-            Operation<BinaryData> operation = client.ImportDevices(WaitUntil.Completed, content);
+            Operation<BinaryData> operation = client.ImportDevicesTODO(WaitUntil.Completed, content);
             BinaryData responseData = operation.Value;
 
             JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;
@@ -4714,7 +4714,7 @@ ModuleId = "<moduleId>",
             DeviceManagementClient client = new DeviceManagementClient(endpoint, "<instanceId>", credential);
 
             using RequestContent content = RequestContent.Create("Devices");
-            Operation<BinaryData> operation = await client.ImportDevicesAsync(WaitUntil.Completed, content);
+            Operation<BinaryData> operation = await client.ImportDevicesAsyncTODO(WaitUntil.Completed, content);
             BinaryData responseData = operation.Value;
 
             JsonElement result = JsonDocument.Parse(responseData.ToStream()).RootElement;

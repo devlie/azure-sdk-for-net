@@ -965,7 +965,7 @@ namespace Azure.IoT.DeviceUpdate
 
             RequestContext context = FromCancellationToken(cancellationToken);
             using RequestContent content = RequestContentHelper.FromEnumerable(updateToImport);
-            Operation<BinaryData> response = await StartImportUpdateAsync(waitUntil, content, context).ConfigureAwait(false);
+            Operation<BinaryData> response = await StartImportUpdateAsyncTODO(waitUntil, content, context).ConfigureAwait(false);
             return ProtocolOperationHelpers.Convert(response, UpdateOperation.FromResponse, ClientDiagnostics, "DeviceUpdateClient.StartImportUpdate");
         }
 
@@ -984,7 +984,7 @@ namespace Azure.IoT.DeviceUpdate
 
             RequestContext context = FromCancellationToken(cancellationToken);
             using RequestContent content = RequestContentHelper.FromEnumerable(updateToImport);
-            Operation<BinaryData> response = StartImportUpdate(waitUntil, content, context);
+            Operation<BinaryData> response = StartImportUpdateTODO(waitUntil, content, context);
             return ProtocolOperationHelpers.Convert(response, UpdateOperation.FromResponse, ClientDiagnostics, "DeviceUpdateClient.StartImportUpdate");
         }
 
@@ -1011,7 +1011,7 @@ namespace Azure.IoT.DeviceUpdate
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Operation"/> representing an asynchronous operation on the service. </returns>
         /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='StartImportUpdateAsync(WaitUntil,RequestContent,RequestContext)']/*" />
-        public virtual async Task<Operation<BinaryData>> StartImportUpdateAsync(WaitUntil waitUntil, RequestContent content, RequestContext context = null)
+        public virtual async Task<Operation<BinaryData>> StartImportUpdateAsyncTODO(WaitUntil waitUntil, RequestContent content, RequestContext context = null)
         {
             Argument.AssertNotNull(content, nameof(content));
 
@@ -1052,7 +1052,7 @@ namespace Azure.IoT.DeviceUpdate
         /// <exception cref="RequestFailedException"> Service returned a non-success status code. </exception>
         /// <returns> The <see cref="Operation"/> representing an asynchronous operation on the service. </returns>
         /// <include file="Docs/DeviceUpdateClient.xml" path="doc/members/member[@name='StartImportUpdate(WaitUntil,RequestContent,RequestContext)']/*" />
-        public virtual Operation<BinaryData> StartImportUpdate(WaitUntil waitUntil, RequestContent content, RequestContext context = null)
+        public virtual Operation<BinaryData> StartImportUpdateTODO(WaitUntil waitUntil, RequestContent content, RequestContext context = null)
         {
             Argument.AssertNotNull(content, nameof(content));
 
