@@ -1317,46 +1317,46 @@ Files = {new FileImportMetadata("<filename>", "<url>")},
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public void Example_StartDeleteUpdate_ShortVersion()
+        public void Example_DeleteUpdate_ShortVersion()
         {
             Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
             DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-            Operation operation = client.StartDeleteUpdate(WaitUntil.Completed, "<provider>", "<name>", "<version>");
+            Operation operation = client.DeleteUpdate(WaitUntil.Completed, "<provider>", "<name>", "<version>");
         }
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public async Task Example_StartDeleteUpdate_ShortVersion_Async()
+        public async Task Example_DeleteUpdate_ShortVersion_Async()
         {
             Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
             DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-            Operation operation = await client.StartDeleteUpdateAsync(WaitUntil.Completed, "<provider>", "<name>", "<version>");
+            Operation operation = await client.DeleteUpdateAsync(WaitUntil.Completed, "<provider>", "<name>", "<version>");
         }
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public void Example_StartDeleteUpdate_AllParameters()
+        public void Example_DeleteUpdate_AllParameters()
         {
             Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
             DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-            Operation operation = client.StartDeleteUpdate(WaitUntil.Completed, "<provider>", "<name>", "<version>");
+            Operation operation = client.DeleteUpdate(WaitUntil.Completed, "<provider>", "<name>", "<version>");
         }
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public async Task Example_StartDeleteUpdate_AllParameters_Async()
+        public async Task Example_DeleteUpdate_AllParameters_Async()
         {
             Uri endpoint = new Uri("<https://my-service.azure.com>");
             TokenCredential credential = new DefaultAzureCredential();
             DeviceUpdateClient client = new DeviceUpdateClient(endpoint, "<instanceId>", credential);
 
-            Operation operation = await client.StartDeleteUpdateAsync(WaitUntil.Completed, "<provider>", "<name>", "<version>");
+            Operation operation = await client.DeleteUpdateAsync(WaitUntil.Completed, "<provider>", "<name>", "<version>");
         }
     }
 }
