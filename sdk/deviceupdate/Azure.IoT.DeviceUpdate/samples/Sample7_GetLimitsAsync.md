@@ -1,4 +1,4 @@
-# Get updates
+# Get Limits
 
 This sample demonstrates using `InstanceManagementClient` class in this library to retrieve service usage statistics and associated limits. To get started, you'll need Device Update for IoT Hub AccountId (hostname) and InstanceId which you can access in Azure Portal. See the [README](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/deviceupdate/Azure.IoT.DeviceUpdate/README.md) for links and instructions.
 
